@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- PAGE TITLE HERE -->
+	<title>Job Board - Login</title>
+
+	<!-- All Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="DexignZone">
+	<meta name="robots" content="">
+	<meta name="keywords"
+		content="applicant, candidate, career, companies, employment, freelancer, job board, job directory, Job guru, job listing, job posting, job seeker, recruiting, resume, resume listing">
+	<meta name="description"
+		content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
+	<meta property="og:title" content="Job Board - Job Portal HTML Template + RTL and Dark layout">
+	<meta property="og:description"
+		content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
+	<meta property="og:image" content="https://job-board.dexignzone.com/xhtml/social-image.png">
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- MOBILE SPECIFIC -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- FAVICONS ICON -->
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.min.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	<!-- STYLESHEETS -->
+	<link rel="stylesheet" type="text/css" href="css/plugins.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/templete.css">
+	<link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/dark-layout.css">
+
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+
+	<style>
+		/* ── Login-specific styles ───────────────────────── */
+		.input-error {
+			border-color: #dc3545 !important;
+			box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, .25);
+		}
+
+		.field-error-msg {
+			color: #dc3545;
+			font-size: 12px;
+			margin-top: 4px;
+			display: none;
+		}
+
+		#loginAlert,
+		#fpAlert {
+			display: none;
+			margin-bottom: 16px;
+			border-radius: 6px;
+			font-size: 14px;
+		}
+
+		#loginSpinner,
+		#fpSpinner {
+			display: none;
+			width: 16px;
+			height: 16px;
+			border: 2px solid rgba(255, 255, 255, .4);
+			border-top-color: #fff;
+			border-radius: 50%;
+			animation: spin .7s linear infinite;
+			display: none;
+			vertical-align: middle;
+			margin-left: 8px;
+		}
+
+		@keyframes spin {
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+		.login-btn-wrap {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+
+		.remember-wrap {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			margin-bottom: 14px;
+			font-size: 14px;
+		}
+
+		.remember-wrap input[type="checkbox"] {
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+		}
+	</style>
+
+</head>
+
+<body id="bg">
+	<div class="page-wraper">
+		<div id="loading-area"></div>
+		<!-- Content -->
+		<div class="page-content bg-gray login-form-bx browse-job login-style2">
+			<div class="section-full bg-white">
+				<!-- Login Page -->
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-6 col-md-7 box-skew d-flex">
+							<div class="login-2 p-a30 seth d-flex align-self-center m-auto wow fadeInRight"
+								data-wow-delay="0.8s">
+								<div class="tab-content nav">
+
+									<!-- ═══════════════ LOGIN FORM ═══════════════ -->
+									<form id="loginForm" class="tab-pane active col-12 p-a0">
+										<p class="font-weight-600 text-center">If you have an account with us, please
+											log in.</p>
+
+										<!-- Global alert -->
+										<div id="loginAlert" class="alert" role="alert"></div>
+
+										<!-- Email -->
+										<div class="form-group">
+											<label for="loginEmail">E-Mail Address *</label>
+											<div class="input-group">
+												<input id="loginEmail" data-login-field="loginEmail" name="email"
+													required class="form-control" placeholder="Your Email Address"
+													type="email" autocomplete="email">
+											</div>
+											<span id="err-loginEmail" class="field-error-msg"></span>
+										</div>
+
+										<!-- Password -->
+										<div class="form-group">
+											<label for="loginPassword">Password *</label>
+											<div class="input-group">
+												<input id="loginPassword" data-login-field="loginPassword"
+													name="password" required class="form-control"
+													placeholder="Type Password" type="password"
+													autocomplete="current-password">
+											</div>
+											<span id="err-loginPassword" class="field-error-msg"></span>
+										</div>
+
+										<!-- Remember Me -->
+										<div class="remember-wrap">
+											<input type="checkbox" id="loginRememberMe" name="rememberMe">
+											<label for="loginRememberMe">Remember me</label>
+										</div>
+
+										<!-- Submit + Forgot Password -->
+										<div class="login-btn-wrap">
+											<button id="loginBtn" type="submit" class="site-button">
+												Login
+												<span id="loginSpinner"></span>
+											</button>
+											<a data-bs-toggle="tab" href="#forgot-password"
+												class="site-button-link forget-pass m-t15">
+												<i class="fa fa-unlock-alt"></i> Forgot Password
+											</a>
+										</div>
+									</form>
+
+									<!-- ═══════════════ FORGOT PASSWORD FORM ═══════════════ -->
+									<form id="forgotPasswordForm" class="tab-pane fade col-12 p-a0">
+										<p>We will send you an email to reset your password.</p>
+
+										<!-- Global alert -->
+										<div id="fpAlert" class="alert" role="alert"></div>
+
+										<!-- Email -->
+										<div class="form-group">
+											<label for="fpEmail">E-Mail Address *</label>
+											<div class="input-group">
+												<input id="fpEmail" name="fpEmail" required class="form-control"
+													placeholder="Your Email Address" type="email" autocomplete="email">
+											</div>
+										</div>
+
+										<div class="text-left">
+											<a class="site-button outline gray" data-bs-toggle="tab"
+												href="#login">Back</a>
+											<button id="fpSubmitBtn" type="submit" class="site-button float-end">
+												Submit
+												<span id="fpSpinner"></span>
+											</button>
+										</div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-5 d-flex box-skew1">
+							<div class="text-white max-w400 align-self-center">
+								<div class="logo">
+									<a href="index.html"><img src="images/logo-white2.png" alt=""></a>
+								</div>
+								<h2 class="m-b10">Login To You Now</h2>
+								<p class="m-b40">Lorem Ipsum is simply dummy text of the printing and typesetting
+									industry has been the industry.</p>
+								<ul class="list-inline m-a0">
+									<li><a target="_blank" href="https://www.facebook.com/"
+											class="site-button white facebook circle "><i
+												class="fab fa-facebook-f"></i></a></li>
+									<li><a target="_blank" href="https://www.linkedin.com/"
+											class="site-button white linkedin circle "><i
+												class="fab fa-linkedin-in"></i></a></li>
+									<li><a target="_blank" href="https://www.instagram.com/"
+											class="site-button white instagram circle "><i
+												class="fab fa-instagram"></i></a></li>
+									<li><a target="_blank" href="https://twitter.com/"
+											class="site-button white twitter circle "><i class="fab fa-twitter"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Login Page END -->
+			</div>
+			<footer class="login-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 text-center">
+							<span class="float-start text-black-light"> © Copyright by <i
+									class="fa fa-heart m-lr5 text-red heart"></i>
+								<a href="javascript:void(0);" class="text-primary">DexignZone </a></span>
+							<span class="float-end">All rights reserved.</span>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<!-- Content END -->
+		<button class="scroltop fa fa-chevron-up"></button>
+	</div>
+	<!-- JAVASCRIPT FILES ========================================= -->
+	<script src="js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+	<script src="plugins/wow/wow.js"></script><!-- WOW JS -->
+	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+	<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script><!-- FORM JS -->
+	<script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script><!-- FORM JS -->
+	<script src="plugins/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+	<script src="plugins/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+	<script src="plugins/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+	<script src="plugins/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
+	<script src="plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
+	<script src="plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
+	<script src="plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
+	<script src="plugins/scroll/scrollbar.min.js"></script><!-- OWL SLIDER -->
+	<script src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
+	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
+	<!-- Login Logic - Dokumentasiyaya uyğun -->
+	<script src="js/script/login.js"></script>
+
+</body>
+
+</html>
