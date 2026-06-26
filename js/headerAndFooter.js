@@ -77,7 +77,7 @@ $(document).ready(function () {
                 var user = JSON.parse(userJson);
                 var fullName = user.fullName || "User";
                 var role = user.role || "candidate";
-                
+
                 // Rola uyğun profil səhifəsi
                 var profileUrl = role === 'employer' ? 'company-profile.html' : 'jobs-profile.html';
 
@@ -135,13 +135,13 @@ $(document).ready(function () {
                     refreshToken: refreshToken || ""
                 })
             })
-            .then(function (response) {
-                clearSessionAndRedirect();
-            })
-            .catch(function (err) {
-                console.error('Logout request error:', err);
-                clearSessionAndRedirect(); // Xəta olsa belə lokal silib yönləndiririk
-            });
+                .then(function (response) {
+                    clearSessionAndRedirect();
+                })
+                .catch(function (err) {
+                    console.error('Logout request error:', err);
+                    clearSessionAndRedirect(); // Xəta olsa belə lokal silib yönləndiririk
+                });
         } else {
             clearSessionAndRedirect();
         }

@@ -294,6 +294,13 @@ $(document).ready(function () {
                 'login'
             );
         }
+        if (params.get('reset') === 'true') {
+            showAlert(
+                '<strong>Password reset successfully!</strong> Your password has been successfully reset. You can now log in with your new password.',
+                'success',
+                'login'
+            );
+        }
         if (params.get('logout') === 'true') {
             showAlert('You have been successfully logged out.', 'info', 'login');
         }

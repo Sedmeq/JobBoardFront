@@ -1,39 +1,50 @@
+
 $(document).ready(function () {
 
     /**
-     * Dokumentasiyaya uyğun API Base URL 
-     * POST /api/auth/register
+     * Dokumentasiyaya uyğun API Base URL
+     * POST /api/auth/reset-password
      */
     var API_BASE_URL = 'https://localhost:7135/api';
+
+    // URL-dən token-i oxu
+    var params = new URLSearchParams(window.location.search);
+    var token = params.get('token');
+
+    // Token yoxdursa, formu gizlət və xəbərdarlıq panelini göstər
+    if (!token) {
+        $('#resetFormWrapper').hide();
+        $('#tokenWarningPanel').fadeIn(300);
+    }
 
     // ─── Yardımçı funksiyalar ─────────────────────────────
 
     /** Global alert göstər */
     function showAlert(message, type) {
         type = type || 'info';
-        var alertEl = $('#regAlert');
+        var alertEl = $('#resetAlert');
         alertEl
             .removeClass('alert-success alert-danger alert-info alert-warning')
             .addClass('alert-' + type)
             .html(message)
             .slideDown(200);
-        // success xəricindəkilər 6 saniyə sonra gizlənir
+        // success xaricindəkilər 6 saniyə sonra gizlənir
         if (type !== 'success') {
             setTimeout(function () { alertEl.slideUp(200); }, 6000);
         }
     }
 
-    function hideAlert() { $('#regAlert').slideUp(200); }
+    function hideAlert() { $('#resetAlert').slideUp(200); }
 
     /** Loading vəziyyəti */
     function setLoading(state) {
-        $('#registerBtn').prop('disabled', state);
-        state ? $('#registerSpinner').show() : $('#registerSpinner').hide();
+        $('#resetBtn').prop('disabled', state);
+        state ? $('#resetSpinner').show() : $('#resetSpinner').hide();
     }
 
     /**
      * Field xətasını input altında göstər / sil
-     * fieldName: "fullName" | "email" | "password" | "confirmPassword" | "role"
+     * fieldName: "newPassword" | "confirmPassword"
      */
     function setFieldError(fieldName, msg) {
         var errEl = $('#err-' + fieldName);
@@ -49,21 +60,20 @@ $(document).ready(function () {
 
     /** Bütün field xətalarını sil */
     function clearFieldErrors() {
-        ['fullName', 'email', 'password', 'confirmPassword', 'role'].forEach(function (f) {
+        ['newPassword', 'confirmPassword'].forEach(function (f) {
             setFieldError(f, null);
         });
     }
 
     /**
      * Dokumentasiya Error format:
-     * { error: { code, message, details: [ { field: "Email", message: "..." } ] } }
-     * → hər field üçün inputun altında xəta göstər
+     * { error: { code, message, details: [ { field: "NewPassword", message: "..." } ] } }
      */
     function applyFieldErrors(details) {
         if (!details || !details.length) return;
         details.forEach(function (d) {
             if (!d.field) return;
-            // API PascalCase (FullName) → camelCase (fullName)
+            // API PascalCase (NewPassword) → camelCase (newPassword)
             var key = d.field.charAt(0).toLowerCase() + d.field.slice(1);
             if ($('#err-' + key).length) {
                 setFieldError(key, d.message);
@@ -72,7 +82,7 @@ $(document).ready(function () {
     }
 
     // ─── Şifrə gücü indikatoru ───────────────────────────
-    $('#regPassword').on('input', function () {
+    $('#resetPassword').on('input', function () {
         var pw = $(this).val();
         var bar = $('#strengthBar');
         if (!pw.length) {
@@ -84,7 +94,7 @@ $(document).ready(function () {
         if (pw.length >= 12) score++;
         if (/[A-Z]/.test(pw)) score++;
         if (/[a-z]/.test(pw)) score++;
-        if (/\d/.test(pw)) score++;
+        if (/[d]/.test(pw) || /\d/.test(pw)) score++;
         if (/[!@#$%^&*(),.?":{}|<>]/.test(pw)) score++;
 
         bar.removeClass('strength-weak strength-medium strength-strong');
@@ -94,8 +104,8 @@ $(document).ready(function () {
     });
 
     // ─── Şifrə uyğunluq indikatoru ──────────────────────
-    $('#regConfirmPassword').on('input', function () {
-        var pw = $('#regPassword').val();
+    $('#resetConfirmPassword').on('input', function () {
+        var pw = $('#resetPassword').val();
         var confirm = $(this).val();
         var msgEl = $('#passwordMatchMsg');
         if (!confirm.length) {
@@ -110,92 +120,66 @@ $(document).ready(function () {
     });
 
     // Input-a focus olduqda həmin field xətasını sil
-    $('#registerForm [name]').on('focus', function () {
+    $('#resetPasswordForm [name]').on('focus', function () {
         setFieldError($(this).attr('name'), null);
     });
 
-    // ─── Register Form Submit ────────────────────────────
+    // ─── Reset Password Form Submit ──────────────────────
     /**
      * Dokumentasiya:
-     * POST /api/auth/register
-     * Body: { fullName, email, password, confirmPassword, role }
-     *
-     * 201 → { success: true, message: "Doğrulama emaili göndərildi..." }
-     * 409 → Email artıq istifadə olunur
-     * 400 → { success: false, error: { code, message, details } }
+     * POST /api/auth/reset-password
+     * Body: { token, newPassword, confirmPassword }
      */
-    $('#registerForm').on('submit', function (e) {
+    $('#resetPasswordForm').on('submit', function (e) {
         e.preventDefault();
         hideAlert();
         clearFieldErrors();
 
-        var fullName = $('#regFullName').val().trim();
-        var email = $('#regEmail').val().trim();
-        var password = $('#regPassword').val();
-        var confirmPassword = $('#regConfirmPassword').val();
-        var role = $('#regRole').val();
+        var newPassword = $('#resetPassword').val();
+        var confirmPassword = $('#resetConfirmPassword').val();
 
         // ── Client-side validasiya ──
         var hasError = false;
 
-        if (!fullName) {
-            setFieldError('fullName', 'Full name is required.');
-            hasError = true;
-        } else if (fullName.length < 2) {
-            setFieldError('fullName', 'Full name must be at least 2 characters.');
-            hasError = true;
-        }
-
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email) {
-            setFieldError('email', 'Email address is required.');
-            hasError = true;
-        } else if (!emailRegex.test(email)) {
-            setFieldError('email', 'Please enter a valid email address.');
-            hasError = true;
-        }
-
         // Dokumentasiya: min 8 char, uppercase, lowercase, digit, special
         var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
-        if (!password) {
-            setFieldError('password', 'Password is required.');
+        if (!newPassword) {
+            setFieldError('newPassword', 'New password is required.');
             hasError = true;
-        } else if (!passwordRegex.test(password)) {
-            setFieldError('password', 'Password must be at least 8 characters with uppercase, lowercase, number, and special character.');
+        } else if (!passwordRegex.test(newPassword)) {
+            setFieldError('newPassword', 'Password must be at least 8 characters with uppercase, lowercase, number, and special character.');
             hasError = true;
         }
 
         if (!confirmPassword) {
             setFieldError('confirmPassword', 'Please confirm your password.');
             hasError = true;
-        } else if (password !== confirmPassword) {
+        } else if (newPassword !== confirmPassword) {
             setFieldError('confirmPassword', 'Passwords do not match.');
-            hasError = true;
-        }
-
-        if (!role) {
-            setFieldError('role', 'Please select your role (candidate or employer).');
             hasError = true;
         }
 
         if (hasError) return;
 
+        // Token yoxlamasını təkrarla
+        if (!token) {
+            showAlert('Reset token is missing. Please request a new link.', 'danger');
+            return;
+        }
+
         // ── API çağırışı ──
         setLoading(true);
 
-        fetch(API_BASE_URL + '/auth/register', {
+        fetch(API_BASE_URL + '/auth/reset-password', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                fullName: fullName,
-                email: email,
-                password: password,
-                confirmPassword: confirmPassword,
-                role: role
+                token: token,
+                newPassword: newPassword,
+                confirmPassword: confirmPassword
             })
         })
             .then(function (response) {
-                // HTTP status + body birlikdə qaytarılır
                 return response.json().then(function (data) {
                     return { status: response.status, data: data };
                 });
@@ -205,47 +189,32 @@ $(document).ready(function () {
                 var status = result.status;
                 var data = result.data;
 
-                // ── 201 Created: Uğurlu qeydiyyat ──
-                if (status === 201 && data.success) {
-                    // Formu gizlət, email doğrulama panelini göstər
-                    $('#registerFormWrapper').hide();
-                    $('#regAlert').hide();
-                    // API-dən gələn mesajı göstər (Azerbaijani/English)
-                    $('#verifyMsg').text(
-                        data.message || 'A verification link has been sent to your email address. Please verify your email before logging in.'
-                    );
-                    $('#verifyPanel').fadeIn(300);
+                // ── 200 OK: Uğurlu sıfırlama ──
+                if (status === 200 && data.success) {
+                    // Giriş səhifəsinə yönləndir və uğurlu mesajı parametr olaraq göndər
+                    window.location.href = 'login-3.html?reset=true';
                     return;
                 }
 
-                // ── 409 Conflict: Email artıq qeydiyyatdan keçib ──
-                if (status === 409) {
-                    setFieldError('email', 'This email is already registered. Please use a different email or sign in.');
-                    showAlert('An account with this email already exists.', 'warning');
-                    return;
-                }
-
-                // ── 400 Bad Request: Server-side validasiya xətaları ──
+                // ── 400 Bad Request / Validation errors ──
                 if (status === 400 || (data && !data.success)) {
                     if (data.error && data.error.details && data.error.details.length) {
-                        // Field-level xətaları hər inputun altında göstər
                         applyFieldErrors(data.error.details);
                         showAlert(data.error.message || 'Please correct the highlighted errors.', 'danger');
                     } else {
                         showAlert(
-                            (data.error && data.error.message) || 'Registration failed. Please try again.',
+                            (data.error && data.error.message) || 'Password reset failed. The token may be expired or invalid.',
                             'danger'
                         );
                     }
                     return;
                 }
 
-                // ── Gözlənilməz cavab ──
                 showAlert('Unexpected response from server (HTTP ' + status + '). Please try again.', 'danger');
             })
             .catch(function (err) {
                 setLoading(false);
-                console.error('Register fetch error:', err);
+                console.error('Reset password fetch error:', err);
                 showAlert(
                     'Could not connect to the server. Please check your internet connection and try again.',
                     'danger'
