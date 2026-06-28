@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Job Board - Admin Transactions</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/templete.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
+    <link rel="stylesheet" type="text/css" href="css/dark-layout.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body id="bg">
+    <div class="page-wraper">
+        <div id="loading-area"></div>
+        <div id="header-placeholder"></div>
+
+        <div class="page-content bg-white">
+            <div class="content-block">
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info admin-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);"><img alt=""
+                                                        src="images/team/pic1.jpg"></a>
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">Admin</a></h4>
+                                                <p class="m-b0"><a href="javascript:void(0);">Administrator</a></p>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li><a href="admin-dashboard.html"><i class="fa fa-tachometer-alt"
+                                                        aria-hidden="true"></i> <span>Dashboard</span></a></li>
+                                            <li><a href="admin-users.html"><i class="far fa-user"
+                                                        aria-hidden="true"></i> <span>Manage Users</span></a></li>
+                                            <li><a href="admin-companies.html"><i class="fa fa-building"
+                                                        aria-hidden="true"></i> <span>Manage Companies</span></a></li>
+                                            <li><a href="admin-transactions.html" class="active"><i class="fa fa-random"
+                                                        aria-hidden="true"></i> <span>Transactions</span></a></li>
+                                            <li><a href="admin-categories.html"><i class="fa fa-tags"
+                                                        aria-hidden="true"></i> <span>Categories</span></a></li>
+                                            <li><a href="admin-messages.html"><i class="fa fa-envelope"
+                                                        aria-hidden="true"></i> <span>Messages</span></a></li>
+                                            <li><a href="admin-settings.html"><i class="fa fa-cog"
+                                                        aria-hidden="true"></i> <span>Settings</span></a></li>
+                                            <li><a href="index.html"><i class="fas fa-sign-out-alt"
+                                                        aria-hidden="true"></i> <span>Log Out</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 m-b30">
+                                <div class="job-bx table-job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 float-start text-uppercase">All Transactions</h5>
+                                        <div class="float-end">
+                                            <select id="adminTxStatus" class="d-inline-block" style="width:auto;">
+                                                <option value="">All Status</option>
+                                                <option value="pending">Pending</option>
+                                                <option value="processing">Processing</option>
+                                                <option value="completed">Completed</option>
+                                                <option value="failed">Failed</option>
+                                                <option value="refunded">Refunded</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Type</th>
+                                                <th>Amount</th>
+                                                <th>Date</th>
+                                                <th>Method</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="adminTxBody">
+                                            <tr>
+                                                <td colspan="6" class="text-center p-a30"><i
+                                                        class="fa fa-spinner fa-spin fa-2x text-primary"></i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination-bx float-end">
+                                        <ul class="pagination" id="adminTxPagination"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+    <script src="plugins/magnific-popup/magnific-popup.js"></script>
+    <script src="plugins/counter/waypoints-min.js"></script>
+    <script src="plugins/counter/counterup.min.js"></script>
+    <script src="plugins/imagesloaded/imagesloaded.js"></script>
+    <script src="plugins/masonry/masonry-3.1.4.js"></script>
+    <script src="plugins/masonry/masonry.filter.js"></script>
+    <script src="plugins/owl-carousel/owl.carousel.js"></script>
+    <script src="plugins/scroll/scrollbar.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/dz.carousel.js"></script>
+    <script src="js/dz.ajax.js"></script>
+
+    <script src="js/script/api-client.js"></script>
+    <script src="js/script/admin-common.js"></script>
+    <script src="js/script/admin-transactions.js"></script>
+    <script src="js/headerAndFooter.js"></script>
+</body>
+
+</html>

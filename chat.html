@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Messages - JobBoard</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/templete.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
+    <link rel="stylesheet" type="text/css" href="css/dark-layout.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .chat-wrap {
+            display: flex;
+            border: 1px solid #e6e8f1;
+            border-radius: 12px;
+            overflow: hidden;
+            min-height: 560px;
+        }
+
+        .chat-list {
+            width: 320px;
+            border-right: 1px solid #eef0f5;
+            background: #fafbff;
+            overflow-y: auto;
+            max-height: 640px;
+        }
+
+        .chat-list-item {
+            display: flex;
+            gap: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f1f6;
+            align-items: center;
+        }
+
+        .chat-list-item:hover {
+            background: #f1f4ff;
+        }
+
+        .chat-list-item.active {
+            background: #e7eeff;
+        }
+
+        .chat-list-item img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #e6e8f1;
+        }
+
+        .chat-list-item .ci-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #1f2533;
+            margin: 0;
+        }
+
+        .chat-list-item .ci-job {
+            font-size: 12px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .chat-list-item .ci-last {
+            font-size: 12px;
+            color: #9aa1ad;
+            margin: 2px 0 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        .chat-badge {
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 11px;
+            padding: 1px 7px;
+            margin-left: auto;
+        }
+
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-height: 640px;
+        }
+
+        .chat-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-bottom: 1px solid #eef0f5;
+            background: #fff;
+        }
+
+        .chat-head img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #e6e8f1;
+        }
+
+        .chat-head h6 {
+            margin: 0;
+            font-weight: 700;
+            color: #1f2533;
+        }
+
+        .chat-head .ch-sub {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .chat-head .ch-actions {
+            margin-left: auto;
+        }
+
+        .chat-status-pill {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+            text-transform: capitalize;
+        }
+
+        .cs-open {
+            background: #e6f7ee;
+            color: #1c8a55;
+        }
+
+        .cs-closed {
+            background: #ffe7e7;
+            color: #c0392b;
+        }
+
+        .chat-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+            background: #f7f8fc;
+        }
+
+        .chat-msg {
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        .chat-msg .bubble {
+            max-width: 70%;
+            padding: 9px 14px;
+            border-radius: 14px;
+            font-size: 14px;
+            line-height: 1.5;
+            background: #fff;
+            color: #2d3340;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+        }
+
+        .chat-msg .meta {
+            font-size: 10px;
+            color: #9aa1ad;
+            margin-top: 3px;
+        }
+
+        .chat-msg.mine {
+            justify-content: flex-end;
+        }
+
+        .chat-msg.mine .bubble {
+            background: #2e55fa;
+            color: #fff;
+        }
+
+        .chat-msg.mine .meta {
+            text-align: right;
+        }
+
+        .chat-foot {
+            display: flex;
+            gap: 8px;
+            padding: 14px;
+            border-top: 1px solid #eef0f5;
+            background: #fff;
+        }
+
+        .chat-foot input {
+            flex: 1;
+            border: 1px solid #d9dcea;
+            border-radius: 22px;
+            padding: 10px 16px;
+            font-size: 14px;
+        }
+
+        .chat-foot button {
+            border: 0;
+            background: #2e55fa;
+            color: #fff;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .chat-foot button:disabled {
+            background: #b9c2e8;
+            cursor: not-allowed;
+        }
+
+        .chat-empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #9aa1ad;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .chat-closed-note {
+            text-align: center;
+            padding: 10px;
+            background: #fff4f4;
+            color: #c0392b;
+            font-size: 13px;
+            border-top: 1px solid #f3dede;
+        }
+
+        @media (max-width: 768px) {
+            .chat-list {
+                width: 120px;
+            }
+
+            .chat-list-item .ci-job,
+            .chat-list-item .ci-last {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body id="bg">
+    <div class="page-wraper">
+        <div id="loading-area"></div>
+        <div id="header-placeholder"></div>
+
+        <div class="page-content bg-white">
+            <div class="content-block">
+                <div class="section-full bg-white p-t50 p-b50">
+                    <div class="container">
+                        <div class="job-bx-title clearfix m-b20">
+                            <h5 class="font-weight-700 text-uppercase">Messages</h5>
+                        </div>
+                        <div class="chat-wrap">
+                            <div class="chat-list" id="chatList">
+                                <div class="text-center p-a20"><i class="fa fa-spinner fa-spin text-primary"></i></div>
+                            </div>
+                            <div class="chat-main">
+                                <div id="chatPanel" style="display:none;flex:1;flex-direction:column;height:100%;">
+                                    <div class="chat-head">
+                                        <img id="chatHeadAvatar" src="images/team/pic1.jpg" alt="">
+                                        <div>
+                                            <h6 id="chatHeadName">—</h6>
+                                            <span class="ch-sub" id="chatHeadJob"></span>
+                                        </div>
+                                        <div class="ch-actions">
+                                            <span id="chatStatusPill" class="chat-status-pill cs-open">open</span>
+                                            <button id="chatEndBtn" class="site-button button-sm"
+                                                style="display:none;background:#dc3545;border-color:#dc3545;margin-left:6px;">
+                                                <i class="fa fa-times-circle"></i> End Chat</button>
+                                        </div>
+                                    </div>
+                                    <div class="chat-body" id="chatBody"></div>
+                                    <div class="chat-closed-note" id="chatClosedNote" style="display:none;">
+                                        Bu söhbət bağlanıb. Yeni mesaj göndərmək mümkün deyil.</div>
+                                    <form class="chat-foot" id="chatForm">
+                                        <input type="text" id="chatInput" placeholder="Type a message..."
+                                            autocomplete="off">
+                                        <button type="submit" id="chatSendBtn"><i
+                                                class="fa fa-paper-plane"></i></button>
+                                    </form>
+                                </div>
+                                <div id="chatPlaceholder" class="chat-empty">
+                                    <div>
+                                        <i class="fa fa-comments fa-3x" style="color:#cdd3e8;"></i>
+                                        <p class="m-t10">Söhbət seçin və ya müraciətçi ilə yazışmağa başlayın.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/dz.carousel.js"></script>
+    <script src="js/dz.ajax.js"></script>
+
+    <script src="js/script/api-client.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script src="js/script/chat.js"></script>
+
+    <script src="js/headerAndFooter.js"></script>
+</body>
+
+</html>

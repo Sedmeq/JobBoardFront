@@ -126,7 +126,13 @@
 												<th>Status</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="transactionsBody">
+											<tr>
+												<td colspan="6" class="text-center p-a30"><i
+														class="fa fa-spinner fa-spin fa-2x text-primary"></i></td>
+											</tr>
+										</tbody>
+										<tbody style="display:none;">
 											<tr>
 												<td class="order-id text-primary">#123</td>
 												<td class="job-name"><a href="javascript:void(0);">Social Media
@@ -216,7 +222,7 @@
 										</tbody>
 									</table>
 									<div class="pagination-bx float-end">
-										<ul class="pagination">
+										<ul class="pagination" id="transactionsPagination">
 											<li class="previous"><a href="javascript:void(0);"><i
 														class="ti-arrow-left"></i> Prev</a></li>
 											<li class="active"><a href="javascript:void(0);">1</a></li>
@@ -290,6 +296,9 @@
 	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/employer-sidebar.js"></script>
+	<script src="js/script/transactions.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

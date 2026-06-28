@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Job Board - Site Settings</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/templete.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
+    <link rel="stylesheet" type="text/css" href="css/dark-layout.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body id="bg">
+    <div class="page-wraper">
+        <div id="loading-area"></div>
+        <div id="header-placeholder"></div>
+
+        <div class="page-content bg-white">
+            <div class="content-block">
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info admin-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);"><img alt=""
+                                                        src="images/team/pic1.jpg"></a>
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">Admin</a></h4>
+                                                <p class="m-b0"><a href="javascript:void(0);">Administrator</a></p>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li><a href="admin-dashboard.html"><i class="fa fa-tachometer-alt"
+                                                        aria-hidden="true"></i> <span>Dashboard</span></a></li>
+                                            <li><a href="admin-users.html"><i class="far fa-user"
+                                                        aria-hidden="true"></i> <span>Manage Users</span></a></li>
+                                            <li><a href="admin-companies.html"><i class="fa fa-building"
+                                                        aria-hidden="true"></i> <span>Manage Companies</span></a></li>
+                                            <li><a href="admin-transactions.html"><i class="fa fa-random"
+                                                        aria-hidden="true"></i> <span>Transactions</span></a></li>
+                                            <li><a href="admin-categories.html"><i class="fa fa-tags"
+                                                        aria-hidden="true"></i> <span>Categories</span></a></li>
+                                            <li><a href="admin-messages.html"><i class="fa fa-envelope"
+                                                        aria-hidden="true"></i> <span>Messages</span></a></li>
+                                            <li><a href="admin-settings.html" class="active"><i class="fa fa-cog"
+                                                        aria-hidden="true"></i> <span>Settings</span></a></li>
+                                            <li><a href="index.html"><i class="fas fa-sign-out-alt"
+                                                        aria-hidden="true"></i> <span>Log Out</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 m-b30">
+                                <div class="job-bx submit-resume">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Site Settings</h5>
+                                    </div>
+
+                                    <div id="settingsAlert" style="display:none;"></div>
+
+                                    <form id="settingsForm">
+                                        <h6 class="text-uppercase m-b10">Contact Information</h6>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <input type="text" id="setAddress" class="form-control"
+                                                        placeholder="Address">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="email" id="setEmail" class="form-control"
+                                                        placeholder="info@example.com">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Phone</label>
+                                                    <input type="text" id="setPhone" class="form-control"
+                                                        placeholder="+994 ...">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Working Hours</label>
+                                                    <input type="text" id="setWorkingHours" class="form-control"
+                                                        placeholder="Mon - Fri: 09:00 - 18:00">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h6 class="text-uppercase m-b10 m-t20">Google Maps</h6>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Map Embed URL (iframe src)</label>
+                                                    <textarea id="setMapEmbedUrl" rows="3" class="form-control"
+                                                        placeholder="https://www.google.com/maps/embed?pb=..."></textarea>
+                                                    <small class="text-muted">Google Maps → Share → Embed a map →
+                                                        kopyalanan iframe-dəki <b>src</b> linkini bura
+                                                        yapışdırın.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h6 class="text-uppercase m-b10 m-t20">reCAPTCHA (v2 Checkbox)</h6>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Enabled</label>
+                                                    <select id="setRecaptchaEnabled" class="form-control">
+                                                        <option value="false">Off</option>
+                                                        <option value="true">On</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Site Key</label>
+                                                    <input type="text" id="setRecaptchaSiteKey" class="form-control"
+                                                        placeholder="6Lc... (Google reCAPTCHA Site Key)">
+                                                    <small class="text-muted">Secret Key serverdə
+                                                        <b>appsettings.json → ReCaptcha:SecretKey</b> bölməsində
+                                                        saxlanılır.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="site-button m-t10" id="settingsSaveBtn">
+                                            <i class="fa fa-save"></i> Save Settings
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="job-bx submit-resume m-t30">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Change Password</h5>
+                                    </div>
+
+                                    <div id="changePassAlert" style="display:none;"></div>
+
+                                    <form id="changePasswordForm">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label>Old Password</label>
+                                                    <input id="oldPassword" type="password" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>New Password</label>
+                                                    <input id="newPassword" type="password" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Confirm New Password</label>
+                                                    <input id="confirmNewPassword" type="password" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 m-b10">
+                                                <button id="changePassBtn" type="submit" class="site-button">
+                                                    <i class="fa fa-key"></i> Update Password</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+    <script src="plugins/magnific-popup/magnific-popup.js"></script>
+    <script src="plugins/counter/waypoints-min.js"></script>
+    <script src="plugins/counter/counterup.min.js"></script>
+    <script src="plugins/imagesloaded/imagesloaded.js"></script>
+    <script src="plugins/masonry/masonry-3.1.4.js"></script>
+    <script src="plugins/masonry/masonry.filter.js"></script>
+    <script src="plugins/owl-carousel/owl.carousel.js"></script>
+    <script src="plugins/scroll/scrollbar.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/dz.carousel.js"></script>
+    <script src="js/dz.ajax.js"></script>
+
+    <script src="js/script/api-client.js"></script>
+    <script src="js/script/admin-common.js"></script>
+    <script src="js/script/admin-settings.js"></script>
+    <script src="js/script/change-password.js"></script>
+    <script src="js/headerAndFooter.js"></script>
+</body>
+
+</html>

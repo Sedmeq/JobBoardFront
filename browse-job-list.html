@@ -79,13 +79,14 @@
 			<div class="section-full browse-job-find">
 				<div class="container">
 					<div class="find-job-bx">
-						<form class="dezPlaceAni">
+						<form class="dezPlaceAni" id="listSearchForm">
 							<div class="row">
 								<div class="col-lg-4 col-md-6">
 									<div class="form-group">
 										<label>Job Title, Keywords, or Phrase</label>
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="">
+											<input type="text" id="listSearchKeyword" class="form-control"
+												placeholder="">
 											<div class="input-group-append">
 												<span class="input-group-text"><i class="fa fa-search"></i></span>
 											</div>
@@ -96,7 +97,8 @@
 									<div class="form-group">
 										<label>City, State or ZIP</label>
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="">
+											<input type="text" id="listSearchLocation" class="form-control"
+												placeholder="">
 											<div class="input-group-append">
 												<span class="input-group-text"><i
 														class="fas fa-map-marker-alt"></i></span>
@@ -106,19 +108,12 @@
 								</div>
 								<div class="col-lg-3 col-md-6">
 									<div class="form-group">
-										<select>
-											<option>Select Sector</option>
-											<option>Construction</option>
-											<option>Corodinator</option>
-											<option>Employer</option>
-											<option>Financial Career</option>
-											<option>Information Technology</option>
-											<option>Marketing</option>
-											<option>Quality check</option>
-											<option>Real Estate</option>
-											<option>Sales</option>
-											<option>Supporting</option>
-											<option>Teaching</option>
+										<select id="listSearchJobType">
+											<option value="">Select Job Type</option>
+											<option value="Full-time">Full Time</option>
+											<option value="Part-time">Part Time</option>
+											<option value="Contract">Contract</option>
+											<option value="Internship">Internship</option>
 										</select>
 									</div>
 								</div>
@@ -139,18 +134,26 @@
 						<div class="row">
 							<div class="col-xl-9 col-lg-8 col-md-7">
 								<div class="job-bx-title clearfix">
-									<h5 class="font-weight-700 float-start text-uppercase">2269 Jobs Found</h5>
+									<h5 class="font-weight-700 float-start text-uppercase" id="listJobsFoundLabel">
+										Loading Jobs...</h5>
 									<div class="float-end">
-										<span class="select-title">Sort by freshness</span>
-										<select>
-											<option>Last 2 Months</option>
-											<option>Last Months</option>
-											<option>Last Weeks</option>
-											<option>Last 3 Days</option>
+										<span class="select-title">Sort by</span>
+										<select id="listSortBy">
+											<option value="newest">Newest</option>
+											<option value="oldest">Oldest</option>
+											<option value="salary_desc">Salary (High to Low)</option>
+											<option value="salary_asc">Salary (Low to High)</option>
 										</select>
 									</div>
 								</div>
-								<ul class="post-job-bx">
+								<ul class="post-job-bx" id="listJobsContainer">
+									<li class="text-center p-a30"><i
+											class="fa fa-spinner fa-spin fa-2x text-primary"></i></li>
+								</ul>
+								<div class="pagination-bx style-1 m-t30">
+									<ul class="pagination" id="listJobsPagination"></ul>
+								</div>
+								<ul class="post-job-bx" style="display:none;">
 									<li>
 										<div class="post-bx">
 											<div class="d-flex m-b30">
@@ -344,17 +347,6 @@
 										</div>
 									</li>
 								</ul>
-								<div class="pagination-bx style-1 m-t30">
-									<ul class="pagination">
-										<li class="previous"><a href="javascript:void(0);"><i class="ti-arrow-left"></i>
-												Prev</a></li>
-										<li class="active"><a href="javascript:void(0);">1</a></li>
-										<li><a href="javascript:void(0);">2</a></li>
-										<li><a href="javascript:void(0);">3</a></li>
-										<li class="next"><a href="javascript:void(0);">Next <i
-													class="ti-arrow-right"></i></a></li>
-									</ul>
-								</div>
 							</div>
 							<div class="col-xl-3 col-lg-4 col-md-5">
 								<div class="sticky-top">
@@ -489,6 +481,8 @@
 	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/jobs-list.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

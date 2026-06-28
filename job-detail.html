@@ -87,7 +87,8 @@
 									<div class="row">
 										<div class="col-lg-12 col-md-6">
 											<div class="m-b30">
-												<img src="images/blog/grid/pic1.jpg" alt="">
+												<img id="detailCompanyLogo" src="images/blog/grid/pic1.jpg"
+													alt="Company Logo" onerror="this.src='images/icons/google.png'">
 											</div>
 										</div>
 										<div class="col-lg-12 col-md-6">
@@ -96,14 +97,14 @@
 												<ul>
 													<li><i class="ti-location-pin"></i><strong
 															class="font-weight-700 text-black">Address</strong><span
-															class="text-black-light"> Demo Address #8901 Marmora Road
-															Chi Minh City, Vietnam </span></li>
+															id="detailJobLocation" class="text-black-light"> Loading...
+														</span></li>
 													<li><i class="ti-money"></i><strong
-															class="font-weight-700 text-black">Salary</strong> $800
-														Monthy</li>
+															class="font-weight-700 text-black">Salary</strong> <span
+															id="detailJobSalary">Loading...</span></li>
 													<li><i class="ti-shield"></i><strong
-															class="font-weight-700 text-black">Experience</strong>6 Year
-														Experience</li>
+															class="font-weight-700 text-black">Experience</strong> <span
+															id="detailJobExperience">Loading...</span></li>
 												</ul>
 											</div>
 										</div>
@@ -112,49 +113,42 @@
 							</div>
 							<div class="col-lg-8">
 								<div class="job-info-box">
-									<h3 class="m-t0 m-b10 font-weight-700 title-head">Digital Marketing Executive</h3>
+									<h3 id="detailJobTitle" class="m-t0 m-b10 font-weight-700 title-head">Loading Job
+										Title...</h3>
 									<ul class="job-info">
-										<li><strong>Education</strong> Web Designer</li>
-										<li><strong>Deadline:</strong> 25th January 2021</li>
-										<li><i class="ti-location-pin text-black m-r5"></i> NewYark </li>
+										<li><strong>Category:</strong> <span id="detailJobCategory">Loading...</span>
+										</li>
+										<li><strong>Deadline:</strong> <span id="detailJobDeadline">Loading...</span>
+										</li>
+										<li><i class="ti-location-pin text-black m-r5"></i> <span
+												id="detailJobLocationSmall">Loading...</span></li>
 									</ul>
-									<p class="p-t20">Lorem Ipsum is simply dummy text of the printing and typesetting
-										industry. Lorem Ipsum has been the industry's standard dummy text ever since the
-										1500s, when an unknown printer took a galley of type and scrambled it to make a
-										type specimen book. It has survived not only five centuries, but also the leap
-										into electronic typesetting, remaining essentially unchanged. It was popularised
-										in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-										passages, and more recently with desktop publishing software like Aldus
-										PageMaker including versions of Lorem Ipsum.</p>
-									<h5 class="font-weight-600">Job Description</h5>
+									<h5 class="font-weight-600 m-t20">Job Description</h5>
 									<div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-										unknown printer took a galley of type and scrambled it to make a type specimen
-										book. It has survived not only five centuries, but also the leap into electronic
-										typesetting, remaining essentially unchanged. It was popularised in the 1960s
-										with the release of Letraset sheets containing Lorem Ipsum passages, and more
-										recently with desktop publishing software like Aldus PageMaker including
-										versions of Lorem Ipsum.</p>
-									<h5 class="font-weight-600">How to Apply</h5>
+									<div id="detailJobDescription" class="m-b30">Loading job description...</div>
+
+									<h5 class="font-weight-600 m-t30">Responsibilities</h5>
 									<div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-										unknown printer took a galley of type and scrambled it to make a type specimen
-										book. It has survived not only five centuries, but also the leap into electronic
-										typesetting, remaining essentially unchanged. It was popularised in the 1960s
-										with the release of Letraset sheets containing Lorem Ipsum passages.</p>
-									<h5 class="font-weight-600">Job Requirements</h5>
+									<div id="detailJobResponsibilities" class="m-b30">Loading job responsibilities...
+									</div>
+
+									<h5 class="font-weight-600 m-t30">Requirements</h5>
 									<div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
-									<ul class="list-num-count no-round">
-										<li>The DexignZone Privacy Policy was updated on 25 June 2021.</li>
-										<li>Who We Are and What This Policy Covers</li>
-										<li>Remaining essentially unchanged It was popularised in the 1960s </li>
-										<li>Lorem Ipsum has been the industry's standard dummy text ever since the
-											1500s,</li>
-										<li>DexignZone standard dummy text ever since</li>
-									</ul>
-									<a href="jobs-applied-job.html" class="site-button">Apply This Job</a>
+									<div id="detailJobRequirements" class="m-b30">Loading job requirements...</div>
+
+									<h5 class="font-weight-600 m-t30">Benefits</h5>
+									<div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
+									<div id="detailJobBenefits" class="m-b30">Loading benefits...</div>
+
+									<div class="m-t30">
+										<button id="applyJobBtn" class="site-button" style="display:none;"
+											data-bs-toggle="modal" data-bs-target="#applyJobModal">Apply For This
+											Job</button>
+										<a id="loginToApplyBtn" href="login-3.html" class="site-button"
+											style="display:none;">Login to Apply</a>
+										<div id="alreadyAppliedBadge" class="alert alert-success m-a0"
+											style="display:none;"><i class="fa fa-check"></i> Already Applied</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -312,6 +306,42 @@
 				</div>
 			</div>
 		</div>
+		<!-- Apply Job Modal -->
+		<div class="modal fade lead-form-modal" id="applyJobModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div class="modal-body row m-a0 clearfix">
+						<div class="col-lg-12 p-a30">
+							<div class="lead-form browse-job text-left" style="background: transparent;">
+								<form id="applyJobForm" novalidate>
+									<h3 class="m-t0 m-b20">Apply for Job</h3>
+									<div class="form-group">
+										<label for="applyCoverLetter" class="font-weight-600">Cover Letter <span
+												class="text-danger">*</span></label>
+										<textarea id="applyCoverLetter" class="form-control"
+											placeholder="Tell the employer why you are a good fit for this role..."
+											rows="5" required></textarea>
+										<span class="field-error" id="err-coverLetter"
+											style="display: none; color: red; font-size: 12px; margin-top: 5px;"></span>
+									</div>
+									<div id="applyAlert" class="alert alert-danger"
+										style="display:none; font-size: 13px;"></div>
+									<div class="clearfix m-t20">
+										<button type="submit" id="applySubmitBtn"
+											class="btn-primary site-button btn-block">Submit Application <span
+												id="applySpinner" style="display: none;"><i
+													class="fa fa-spinner fa-spin m-l5"></i></span></button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- Modal Box End -->
 		<!-- Footer -->
 		<div id="footer-placeholder"></div>
@@ -335,6 +365,8 @@
 	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/job-detail.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

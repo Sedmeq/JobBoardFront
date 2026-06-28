@@ -2,35 +2,11 @@
 <html lang="en">
 
 <head>
-
-	<!-- PAGE TITLE HERE -->
-	<title>Job Board - Job Portal HTML Template + RTL and Dark layout</title>
-
-	<!-- All Meta -->
+	<title>Job Alerts - JobBoard</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="DexignZone">
-	<meta name="robots" content="">
-	<meta name="keywords"
-		content="applicant, candidate, career, companies, employment, freelancer, job board, job directory, Job guru, job listing, job posting, job seeker, recruiting, resume, resume listing">
-	<meta name="description"
-		content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
-	<meta property="og:title" content="Job Board - Job Portal HTML Template + RTL and Dark layout">
-	<meta property="og:description"
-		content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
-	<meta property="og:image" content="https://job-board.dexignzone.com/xhtml/social-image.png">
-	<meta name="format-detection" content="telephone=no">
-
-	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- FAVICONS ICON -->
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-	<!--[if lt IE 9]>
-	<script src="js/html5shiv.min.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 
 	<!-- STYLESHEETS -->
 	<link rel="stylesheet" type="text/css" href="css/plugins.css">
@@ -39,28 +15,20 @@
 	<link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
 	<link rel="stylesheet" type="text/css" href="css/dark-layout.css">
 
-
-	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
 		rel="stylesheet">
-
 </head>
 
 <body id="bg">
 	<div class="page-wraper">
 		<div id="loading-area"></div>
-		<!-- header -->
 		<div id="header-placeholder"></div>
 
-		<!-- header END -->
-		<!-- Content -->
 		<div class="page-content bg-white">
-			<!-- contact area -->
 			<div class="content-block">
-				<!-- Browse Jobs -->
 				<div class="section-full bg-white p-t50 p-b20">
 					<div class="container">
 						<div class="row">
@@ -72,16 +40,11 @@
 												<a href="javascript:void(0);">
 													<img alt="" src="images/team/pic1.jpg">
 												</a>
-												<div class="upload-link" title="update" data-bs-toggle="tooltip"
-													data-placement="right">
-													<input type="file" class="update-flie">
-													<i class="fa fa-camera"></i>
-												</div>
 											</div>
 											<div class="candidate-title">
 												<div class="">
-													<h4 class="m-b5"><a href="javascript:void(0);">David Matin</a></h4>
-													<p class="m-b0"><a href="javascript:void(0);">Web developer</a></p>
+													<h4 class="m-b5"><a href="javascript:void(0);">My Profile</a></h4>
+													<p class="m-b0"><a href="javascript:void(0);"></a></p>
 												</div>
 											</div>
 										</div>
@@ -114,263 +77,113 @@
 									</div>
 								</div>
 							</div>
+
 							<div class="col-xl-9 col-lg-8 m-b30">
-								<div class="job-bx table-job-bx browse-job clearfix">
+								<div id="alertsMessage" class="alert" role="alert" style="display:none;"></div>
+
+								<!-- Create Alert -->
+								<div class="job-bx m-b30">
 									<div class="job-bx-title clearfix">
-										<h5 class="font-weight-700 float-start text-uppercase">Job Alerts</h5>
-										<div class="float-end">
-											<span class="select-title">Sort by freshness</span>
-											<select>
-												<option>Last 2 Months</option>
-												<option>Last Months</option>
-												<option>Last Weeks</option>
-												<option>Last 3 Days</option>
-											</select>
+										<h5 class="font-weight-700 float-start text-uppercase">Create Job Alert</h5>
+									</div>
+									<form id="createAlertForm">
+										<div class="row">
+											<div class="col-md-6 form-group">
+												<label>Alert Name *</label>
+												<input type="text" id="alertName" class="form-control"
+													placeholder="e.g. Backend Developer jobs">
+											</div>
+											<div class="col-md-6 form-group">
+												<label>Keyword</label>
+												<input type="text" id="alertKeyword" class="form-control"
+													placeholder="e.g. .NET, React">
+											</div>
+											<div class="col-md-6 form-group">
+												<label>Location</label>
+												<input type="text" id="alertLocation" class="form-control"
+													placeholder="e.g. Bakı">
+											</div>
+											<div class="col-md-6 form-group">
+												<label>Category</label>
+												<select id="alertCategory" class="form-control">
+													<option value="">All categories</option>
+												</select>
+											</div>
+											<div class="col-md-6 form-group">
+												<label>Job Type</label>
+												<select id="alertJobType" class="form-control">
+													<option value="">Any</option>
+													<option value="full-time">Full Time</option>
+													<option value="part-time">Part Time</option>
+													<option value="contract">Contract</option>
+													<option value="internship">Internship</option>
+													<option value="remote">Remote</option>
+												</select>
+											</div>
+											<div class="col-md-6 form-group">
+												<label>Frequency</label>
+												<select id="alertFrequency" class="form-control">
+													<option value="daily">Daily</option>
+													<option value="weekly">Weekly</option>
+													<option value="instant">Instant</option>
+												</select>
+											</div>
 										</div>
+										<button type="submit" id="createAlertBtn" class="site-button">
+											<i class="fa fa-plus"></i> Create Alert</button>
+									</form>
+								</div>
+
+								<!-- Alerts List -->
+								<div class="job-bx table-job-bx clearfix">
+									<div class="job-bx-title clearfix">
+										<h5 class="font-weight-700 float-start text-uppercase" id="alertsTitle">Job
+											Alerts</h5>
 									</div>
 									<table>
 										<thead>
 											<tr>
-												<th>Premium jobs</th>
-												<th>Criterias</th>
+												<th>Alert</th>
+												<th>Criteria</th>
 												<th>Date</th>
+												<th>Status</th>
 												<th></th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="alertsBody">
 											<tr>
-												<td class="job-name"><a href="job-detail.html">Social Media Expert</a>
-												</td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">December 15,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="job-name"><a href="job-detail.html">Web Designer</a></td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">November 10,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="job-name"><a href="job-detail.html">Finance Accountant</a>
-												</td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">October 5,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="job-name"><a href="job-detail.html">Social Media Expert</a>
-												</td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">December 15,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="job-name"><a href="job-detail.html">Web Designer</a></td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">November 10,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="job-name"><a href="job-detail.html">Finance Accountant</a>
-												</td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">October 5,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="job-name"><a href="job-detail.html">Social Media Expert</a>
-												</td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">December 15,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="job-name"><a href="job-detail.html">Web Designer</a></td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">November 10,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="job-name"><a href="job-detail.html">Finance Accountant</a>
-												</td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">October 5,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="job-name"><a href="job-detail.html">Web Designer</a></td>
-												<td class="criterias">Lorem Ipsum is simply dummy text.</td>
-												<td class="date">November 10,2021</td>
-												<td class="job-links">
-													<a href="javascript:void(0);" data-bs-toggle="modal"
-														data-bs-target="#exampleModalLong">
-														<i class="fa fa-eye"></i></a>
-													<a href="javascript:void(0);"><i class="ti-trash"></i></a>
+												<td colspan="5" class="text-center p-a20">
+													<i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
 												</td>
 											</tr>
 										</tbody>
 									</table>
-									<div class="pagination-bx float-md-end">
-										<ul class="pagination">
-											<li class="previous"><a href="javascript:void(0);"><i
-														class="ti-arrow-left"></i> Prev</a></li>
-											<li class="active"><a href="javascript:void(0);">1</a></li>
-											<li><a href="javascript:void(0);">2</a></li>
-											<li><a href="javascript:void(0);">3</a></li>
-											<li class="next"><a href="javascript:void(0);">Next <i
-														class="ti-arrow-right"></i></a></li>
-										</ul>
-									</div>
 								</div>
-								<!-- Modal -->
-								<div class="modal fade modal-bx-info" id="exampleModalLong" tabindex="-1" role="dialog"
-									aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<div class="logo-img">
-													<img alt="" src="images/logo/icon2.png">
-												</div>
-												<h5 class="modal-title">Company Name</h5>
-												<button type="button" class="close" data-bs-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<ul>
-													<li><strong>Job Title :</strong>
-														<p> Web Developer – PHP, HTML, CSS </p>
-													</li>
-													<li><strong>Experience :</strong>
-														<p>5 Year 3 Months</p>
-													</li>
-													<li><strong>Deseription :</strong>
-														<p>Lorem Ipsum is simply dummy text of the printing and
-															typesetting industry has been the industry's standard dummy
-															text ever since.</p>
-													</li>
-												</ul>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary"
-													data-bs-dismiss="modal">Close</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Modal End -->
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- Browse Jobs END -->
 			</div>
 		</div>
-		<!-- Content END-->
-		<!-- Modal Box -->
-		<div class="modal fade lead-form-modal" id="car-details" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<div class="modal-body row m-a0 clearfix">
-						<div class="col-lg-6 col-md-6 d-flex p-a0"
-							style="background-image: url(images/background/bg3.jpg);  background-position:center; background-size:cover;">
 
-						</div>
-						<div class="col-lg-6 col-md-6 p-a0">
-							<div class="lead-form browse-job text-left">
-								<form>
-									<h3 class="m-t0">Personal Details</h3>
-									<div class="form-group">
-										<input value="" class="form-control" placeholder="Name" />
-									</div>
-									<div class="form-group">
-										<input value="" class="form-control" placeholder="Mobile Number" />
-									</div>
-									<div class="clearfix">
-										<button type="button" class="btn-primary site-button btn-block">Submit </button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Modal Box End -->
-		<!-- Footer -->
 		<div id="footer-placeholder"></div>
-		<!-- Footer END -->
 		<button class="scroltop fa fa-chevron-up"></button>
 	</div>
-	<!-- JAVASCRIPT FILES ========================================= -->
-	<script src="js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
-	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
-	<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script><!-- FORM JS -->
-	<script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script><!-- FORM JS -->
-	<script src="plugins/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
-	<script src="plugins/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-	<script src="plugins/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-	<script src="plugins/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
-	<script src="plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
-	<script src="plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
-	<script src="plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
-	<script src="plugins/scroll/scrollbar.min.js"></script><!-- OWL SLIDER -->
-	<script src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
-	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
+
+	<!-- JAVASCRIPT FILES -->
+	<script src="js/jquery.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="plugins/magnific-popup/magnific-popup.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/dz.carousel.js"></script>
+	<script src="js/dz.ajax.js"></script>
+
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/candidate-sidebar.js"></script>
+	<script src="js/script/job-alerts.js"></script>
 
 	<script src="js/headerAndFooter.js"></script>
-
 </body>
 
 </html>

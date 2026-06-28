@@ -80,8 +80,8 @@
 											</div>
 											<div class="candidate-title">
 												<div class="">
-													<h4 class="m-b5"><a href="javascript:void(0);">David Matin</a></h4>
-													<p class="m-b0"><a href="javascript:void(0);">Web developer</a></p>
+													<h4 class="m-b5"><a href="javascript:void(0);">My Profile</a></h4>
+													<p class="m-b0"><a href="javascript:void(0);"></a></p>
 												</div>
 											</div>
 										</div>
@@ -118,102 +118,130 @@
 								<div class="job-bx job-profile">
 									<div class="job-bx-title clearfix">
 										<h5 class="font-weight-700 float-start text-uppercase">Basic Information</h5>
+										<a href="cv-view.html?me=1" target="_blank"
+											class="site-button right-arrow button-sm float-end"><i
+												class="fa fa-download"></i> Download CV (PDF)</a>
 										<a href="index.html"
 											class="site-button right-arrow button-sm float-end">Back</a>
 									</div>
-									<form>
+
+									<div id="profileAlert" class="alert" role="alert" style="display:none;"></div>
+									<div id="profileLoading" class="text-center p-a30"><i
+											class="fa fa-spinner fa-spin fa-2x text-primary"></i>
+										<p class="m-t10">Loading profile...</p>
+									</div>
+
+									<form id="candidateProfileForm" style="display:none;">
 										<div class="row m-b30">
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
 													<label>Your Name:</label>
-													<input type="text" class="form-control"
-														placeholder="Alexander Weir">
+													<input type="text" id="profFullName" class="form-control"
+														placeholder="Your Name" readonly>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Professional title:</label>
-													<input type="text" class="form-control" placeholder="Web Designer">
+													<label>Professional Title (Headline):</label>
+													<input type="text" id="profHeadline" class="form-control"
+														placeholder="e.g. Full Stack Developer">
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Languages:</label>
-													<input type="text" class="form-control" placeholder="English">
+													<label>Current Position:</label>
+													<input type="text" id="profCurrentPosition" class="form-control"
+														placeholder="e.g. Senior Developer">
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Age:</label>
-													<input type="text" class="form-control" placeholder="32 Year">
-												</div>
-											</div>
-											<div class="col-lg-6 col-md-6">
-												<div class="form-group">
-													<label>Current Salary($):</label>
-													<input type="text" class="form-control" placeholder="2000$">
+													<label>Experience (Years):</label>
+													<input type="number" min="0" id="profExperienceYears"
+														class="form-control" placeholder="5">
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
 													<label>Expected Salary:</label>
-													<input type="text" class="form-control" placeholder="2500$">
+													<input type="text" id="profExpectedSalary" class="form-control"
+														placeholder="e.g. 3000-5000">
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6">
+												<div class="form-group">
+													<label>Available for hire:</label>
+													<select id="profIsAvailable" class="form-control">
+														<option value="true">Yes, I'm looking for jobs</option>
+														<option value="false">Not available</option>
+													</select>
 												</div>
 											</div>
 											<div class="col-lg-12 col-md-12">
 												<div class="form-group">
-													<label>Description:</label>
-													<textarea
-														class="form-control">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s.</textarea>
+													<label>Summary / Bio:</label>
+													<textarea id="profSummary" class="form-control"
+														placeholder="Tell employers about yourself..."></textarea>
 												</div>
 											</div>
 										</div>
 										<div class="job-bx-title clearfix">
-											<h5 class="font-weight-700 float-start text-uppercase">Contact Information
-											</h5>
+											<h5 class="font-weight-700 float-start text-uppercase">Contact & Links</h5>
 										</div>
 										<div class="row">
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Phone:</label>
-													<input type="text" class="form-control"
-														placeholder="+1 123 456 7890">
-												</div>
-											</div>
-											<div class="col-lg-6 col-md-6">
-												<div class="form-group">
 													<label>Email Address:</label>
-													<input type="text" class="form-control"
-														placeholder="info@example.com">
+													<input type="text" id="profEmail" class="form-control"
+														placeholder="info@example.com" readonly>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Country:</label>
-													<input type="text" class="form-control" placeholder="Country Name">
+													<label>Location:</label>
+													<input type="text" id="profLocation" class="form-control"
+														placeholder="e.g. Bakı">
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Postcode:</label>
-													<input type="text" class="form-control" placeholder="112233">
+													<label>Website:</label>
+													<input type="text" id="profWebsite" class="form-control"
+														placeholder="https://yoursite.com">
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>City:</label>
-													<input type="text" class="form-control" placeholder="London">
+													<label>LinkedIn URL:</label>
+													<input type="text" id="profLinkedIn" class="form-control"
+														placeholder="https://linkedin.com/in/you">
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Full Address:</label>
-													<input type="text" class="form-control" placeholder="New york City">
+													<label>GitHub URL:</label>
+													<input type="text" id="profGithub" class="form-control"
+														placeholder="https://github.com/you">
 												</div>
 											</div>
 										</div>
-										<button class="site-button m-b30">Save Setting</button>
+										<button type="submit" id="profileSaveBtn" class="site-button m-b30">Save
+											Setting<span id="profileSpinner" style="display:none;"><i
+													class="fa fa-spinner fa-spin"></i></span></button>
 									</form>
+								</div>
+
+								<!-- My Applications -->
+								<div class="job-bx m-t30">
+									<div class="job-bx-title clearfix">
+										<h5 class="font-weight-700 float-start text-uppercase">My Applications</h5>
+										<a href="jobs-applied-job.html"
+											class="site-button right-arrow button-sm float-end">View All</a>
+									</div>
+									<ul class="post-job-bx" id="myApplicationsBody">
+										<li class="text-center p-a20"><i
+												class="fa fa-spinner fa-spin fa-2x text-primary"></i></li>
+									</ul>
 								</div>
 							</div>
 						</div>
@@ -278,6 +306,9 @@
 	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/candidate-sidebar.js"></script>
+	<script src="js/script/candidate-profile.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

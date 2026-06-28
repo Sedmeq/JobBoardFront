@@ -85,13 +85,13 @@
 							<div class="p-a30 border-1  m-b30 contact-area border-1 align-self-stretch radius-sm">
 								<h4 class="m-b10">Quick Contact</h4>
 								<p>If you have any questions simply use the following contact details.</p>
-								<ul class="no-margin">
+								<ul class="no-margin" id="contactInfoList">
 									<li class="icon-bx-wraper left m-b30">
 										<div class="icon-bx-xs border-1"> <a href="#" class="icon-cell"><i
 													class="ti-location-pin"></i></a> </div>
 										<div class="icon-content">
 											<h6 class="text-uppercase m-tb0 dez-tilte">Address:</h6>
-											<p>123 West Street, Melbourne Victoria 3000 Australia</p>
+											<p id="ci-address">-</p>
 										</div>
 									</li>
 									<li class="icon-bx-wraper left  m-b30">
@@ -99,15 +99,23 @@
 													class="ti-email"></i></a> </div>
 										<div class="icon-content">
 											<h6 class="text-uppercase m-tb0 dez-tilte">Email:</h6>
-											<p>info@example.com</p>
+											<p id="ci-email">-</p>
 										</div>
 									</li>
-									<li class="icon-bx-wraper left">
+									<li class="icon-bx-wraper left m-b30">
 										<div class="icon-bx-xs border-1"> <a href="#" class="icon-cell"><i
 													class="ti-mobile"></i></a> </div>
 										<div class="icon-content">
 											<h6 class="text-uppercase m-tb0 dez-tilte">PHONE</h6>
-											<p>+91 987 654 3210</p>
+											<p id="ci-phone">-</p>
+										</div>
+									</li>
+									<li class="icon-bx-wraper left" id="ci-workinghours-li" style="display:none;">
+										<div class="icon-bx-xs border-1"> <a href="#" class="icon-cell"><i
+													class="ti-time"></i></a> </div>
+										<div class="icon-content">
+											<h6 class="text-uppercase m-tb0 dez-tilte">Working Hours</h6>
+											<p id="ci-workinghours">-</p>
 										</div>
 									</li>
 								</ul>
@@ -132,14 +140,13 @@
 						<div class="col-lg-4 col-md-6">
 							<div class="p-a30 m-b30 radius-sm bg-gray clearfix">
 								<h4>Send Message Us</h4>
-								<div class="dzFormMsg"></div>
-								<form method="post" class="dzForm" action="script/contact_smtp.php">
-									<input type="hidden" value="Contact" name="dzToDo">
+								<div id="contactFormMsg" style="display:none;"></div>
+								<form id="contactApiForm" method="post">
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="form-group">
 												<div class="input-group">
-													<input name="dzName" type="text" required class="form-control"
+													<input id="contactName" type="text" required class="form-control"
 														placeholder="Your Name">
 												</div>
 											</div>
@@ -147,7 +154,7 @@
 										<div class="col-lg-12">
 											<div class="form-group">
 												<div class="input-group">
-													<input name="dzEmail" type="email" class="form-control" required
+													<input id="contactEmail" type="email" class="form-control" required
 														placeholder="Your Email Address">
 												</div>
 											</div>
@@ -155,26 +162,32 @@
 										<div class="col-lg-12">
 											<div class="form-group">
 												<div class="input-group">
-													<textarea name="dzMessage" rows="4" class="form-control" required
+													<input id="contactPhone" type="text" class="form-control"
+														placeholder="Your Phone (optional)">
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="form-group">
+												<div class="input-group">
+													<input id="contactSubject" type="text" class="form-control"
+														placeholder="Subject">
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="form-group">
+												<div class="input-group">
+													<textarea id="contactMessage" rows="4" class="form-control" required
 														placeholder="Your Message..."></textarea>
 												</div>
 											</div>
 										</div>
 										<div class="col-lg-12">
-											<div class="recaptcha-bx">
-												<div class="input-group">
-													<div class="g-recaptcha"
-														data-sitekey="<!-- Put reCaptcha Site Key -->"
-														data-callback="verifyRecaptchaCallback"
-														data-expired-callback="expiredRecaptchaCallback"></div>
-													<input class="form-control d-none" style="display:none;"
-														data-recaptcha="true" required
-														data-error="Please complete the Captcha">
-												</div>
-											</div>
+											<div id="contactRecaptcha" class="m-b15"></div>
 										</div>
 										<div class="col-lg-12">
-											<button name="submit" type="submit" value="Submit" class="site-button ">
+											<button type="submit" class="site-button ">
 												<span>Submit</span> </button>
 										</div>
 									</div>
@@ -183,7 +196,7 @@
 						</div>
 						<!-- Left part END -->
 						<div class="col-lg-4 col-md-12 d-lg-flex m-b30">
-							<iframe
+							<iframe id="contactMap"
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227748.3825624477!2d75.65046970649679!3d26.88544791796718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C+Rajasthan!5e0!3m2!1sen!2sin!4v1500819483219"
 								class="align-self-stretch radius-sm" style="border:0; width:100%; min-height:350px;"
 								allowfullscreen></iframe>
@@ -251,6 +264,8 @@
 	<script src='https://www.google.com/recaptcha/api.js'></script> <!-- Google API For Recaptcha  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/contact.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

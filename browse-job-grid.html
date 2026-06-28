@@ -137,18 +137,26 @@
 				<div class="section-full bg-white p-b50">
 					<div class="container">
 						<div class="job-bx-title clearfix">
-							<h5 class="font-weight-700 float-start text-uppercase">2269 Jobs Found</h5>
+							<h5 class="font-weight-700 float-start text-uppercase" id="listJobsFoundLabel">Loading
+								Jobs...</h5>
 							<div class="float-end">
-								<span class="select-title">Sort by freshness</span>
-								<select>
-									<option>Last 2 Months</option>
-									<option>Last Months</option>
-									<option>Last Weeks</option>
-									<option>Last 3 Days</option>
+								<span class="select-title">Sort by</span>
+								<select id="listSortBy">
+									<option value="newest">Newest</option>
+									<option value="oldest">Oldest</option>
+									<option value="salary_desc">Salary (High to Low)</option>
+									<option value="salary_asc">Salary (Low to High)</option>
 								</select>
 							</div>
 						</div>
-						<ul class="post-job-bx browse-job-grid row">
+						<ul class="post-job-bx browse-job-grid row" id="listJobsContainer">
+							<li class="col-12 text-center p-a30"><i
+									class="fa fa-spinner fa-spin fa-2x text-primary"></i></li>
+						</ul>
+						<div class="pagination-bx m-t30">
+							<ul class="pagination" id="listJobsPagination"></ul>
+						</div>
+						<ul class="post-job-bx browse-job-grid row" style="display:none;">
 							<li class="col-lg-4 col-md-6">
 								<div class="post-bx">
 									<div class="d-flex m-b30">
@@ -384,7 +392,7 @@
 								</div>
 							</li>
 						</ul>
-						<div class="pagination-bx m-t30">
+						<div class="pagination-bx m-t30" style="display:none;">
 							<ul class="pagination">
 								<li class="previous"><a href="javascript:void(0);"><i class="ti-arrow-left"></i>
 										Prev</a></li>
@@ -456,6 +464,8 @@
 	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/jobs-list.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

@@ -79,13 +79,13 @@
 			<div class="section-full browse-job-find">
 				<div class="container">
 					<div class="find-job-bx">
-						<form class="dezPlaceAni">
+						<form class="dezPlaceAni" id="gridSearchForm">
 							<div class="row">
 								<div class="col-lg-4 col-md-6">
 									<div class="form-group">
 										<label>Job Title, Keywords, or Phrase</label>
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="">
+											<input type="text" id="gridSearchKeyword" class="form-control" placeholder="">
 											<div class="input-group-append">
 												<span class="input-group-text"><i class="fa fa-search"></i></span>
 											</div>
@@ -96,7 +96,7 @@
 									<div class="form-group">
 										<label>City, State or ZIP</label>
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="">
+											<input type="text" id="gridSearchLocation" class="form-control" placeholder="">
 											<div class="input-group-append">
 												<span class="input-group-text"><i
 														class="fas fa-map-marker-alt"></i></span>
@@ -106,19 +106,12 @@
 								</div>
 								<div class="col-lg-3 col-md-6">
 									<div class="form-group">
-										<select>
-											<option>Select Sector</option>
-											<option>Construction</option>
-											<option>Corodinator</option>
-											<option>Employer</option>
-											<option>Financial Career</option>
-											<option>Information Technology</option>
-											<option>Marketing</option>
-											<option>Quality check</option>
-											<option>Real Estate</option>
-											<option>Sales</option>
-											<option>Supporting</option>
-											<option>Teaching</option>
+										<select id="gridSearchCategory">
+											<option value="">Select Category</option>
+											<option value="1">Software Development</option>
+											<option value="2">Design</option>
+											<option value="3">Marketing</option>
+											<option value="4">Sales</option>
 										</select>
 									</div>
 								</div>
@@ -362,14 +355,14 @@
 							</div>
 							<div class="col-xl-9 col-lg-8 col-md-7">
 								<div class="job-bx-title clearfix">
-									<h5 class="font-weight-700 float-start text-uppercase">2269 Jobs Found</h5>
+									<h5 class="font-weight-700 float-start text-uppercase" id="jobsFoundLabel">Loading Jobs...</h5>
 									<div class="float-end">
-										<span class="select-title">Sort by freshness</span>
-										<select>
-											<option>Last 2 Months</option>
-											<option>Last Months</option>
-											<option>Last Weeks</option>
-											<option>Last 3 Days</option>
+										<span class="select-title">Sort by</span>
+										<select id="gridSortBy">
+											<option value="newest">Newest</option>
+											<option value="oldest">Oldest</option>
+											<option value="salary_desc">Salary: High to Low</option>
+											<option value="salary_asc">Salary: Low to High</option>
 										</select>
 										<div class="float-end p-tb5 p-r10">
 											<a href="browse-job-filter-list.html" class="p-lr5"><i
@@ -379,233 +372,12 @@
 										</div>
 									</div>
 								</div>
-								<ul class="post-job-bx browse-job-grid row">
-									<li class="col-lg-6 col-md-12">
-										<div class="post-bx">
-											<div class="d-flex m-b30">
-												<div class="job-post-info">
-													<h5><a href="job-detail.html">Digital Marketing Executive</a></h5>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> Published 11 months ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="d-flex">
-												<div class="job-time me-auto">
-													<a href="javascript:void(0);"><span>Full Time</span></a>
-												</div>
-												<div class="salary-bx">
-													<span>$1200 - $ 2500</span>
-												</div>
-											</div>
-											<label class="like-btn">
-												<input type="checkbox">
-												<span class="checkmark"></span>
-											</label>
-										</div>
-									</li>
-									<li class="col-lg-6 col-md-12">
-										<div class="post-bx">
-											<div class="d-flex m-b30">
-												<div class="job-post-info">
-													<h5><a href="job-detail.html">Digital Marketing Executive</a></h5>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> Published 11 months ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="d-flex">
-												<div class="job-time me-auto">
-													<a href="javascript:void(0);"><span>Full Time</span></a>
-												</div>
-												<div class="salary-bx">
-													<span>$1200 - $ 2500</span>
-												</div>
-											</div>
-											<label class="like-btn">
-												<input type="checkbox">
-												<span class="checkmark"></span>
-											</label>
-										</div>
-									</li>
-									<li class="col-lg-6 col-md-12">
-										<div class="post-bx">
-											<div class="d-flex m-b30">
-												<div class="job-post-info">
-													<h5><a href="job-detail.html">Digital Marketing Executive</a></h5>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> Published 11 months ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="d-flex">
-												<div class="job-time me-auto">
-													<a href="javascript:void(0);"><span>Full Time</span></a>
-												</div>
-												<div class="salary-bx">
-													<span>$1200 - $ 2500</span>
-												</div>
-											</div>
-											<label class="like-btn">
-												<input type="checkbox">
-												<span class="checkmark"></span>
-											</label>
-										</div>
-									</li>
-									<li class="col-lg-6 col-md-12">
-										<div class="post-bx">
-											<div class="d-flex m-b30">
-												<div class="job-post-info">
-													<h5><a href="job-detail.html">Digital Marketing Executive</a></h5>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> Published 11 months ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="d-flex">
-												<div class="job-time me-auto">
-													<a href="javascript:void(0);"><span>Full Time</span></a>
-												</div>
-												<div class="salary-bx">
-													<span>$1200 - $ 2500</span>
-												</div>
-											</div>
-											<label class="like-btn">
-												<input type="checkbox">
-												<span class="checkmark"></span>
-											</label>
-										</div>
-									</li>
-									<li class="col-lg-6 col-md-12">
-										<div class="post-bx">
-											<div class="d-flex m-b30">
-												<div class="job-post-info">
-													<h5><a href="job-detail.html">Digital Marketing Executive</a></h5>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> Published 11 months ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="d-flex">
-												<div class="job-time me-auto">
-													<a href="javascript:void(0);"><span>Full Time</span></a>
-												</div>
-												<div class="salary-bx">
-													<span>$1200 - $ 2500</span>
-												</div>
-											</div>
-											<label class="like-btn">
-												<input type="checkbox">
-												<span class="checkmark"></span>
-											</label>
-										</div>
-									</li>
-									<li class="col-lg-6 col-md-12">
-										<div class="post-bx">
-											<div class="d-flex m-b30">
-												<div class="job-post-info">
-													<h5><a href="job-detail.html">Digital Marketing Executive</a></h5>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> Published 11 months ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="d-flex">
-												<div class="job-time me-auto">
-													<a href="javascript:void(0);"><span>Full Time</span></a>
-												</div>
-												<div class="salary-bx">
-													<span>$1200 - $ 2500</span>
-												</div>
-											</div>
-											<label class="like-btn">
-												<input type="checkbox">
-												<span class="checkmark"></span>
-											</label>
-										</div>
-									</li>
-									<li class="col-lg-6 col-md-12">
-										<div class="post-bx">
-											<div class="d-flex m-b30">
-												<div class="job-post-info">
-													<h5><a href="job-detail.html">Digital Marketing Executive</a></h5>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> Published 11 months ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="d-flex">
-												<div class="job-time me-auto">
-													<a href="javascript:void(0);"><span>Full Time</span></a>
-												</div>
-												<div class="salary-bx">
-													<span>$1200 - $ 2500</span>
-												</div>
-											</div>
-											<label class="like-btn">
-												<input type="checkbox">
-												<span class="checkmark"></span>
-											</label>
-										</div>
-									</li>
-									<li class="col-lg-6 col-md-12">
-										<div class="post-bx">
-											<div class="d-flex m-b30">
-												<div class="job-post-info">
-													<h5><a href="job-detail.html">Digital Marketing Executive</a></h5>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> Published 11 months ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="d-flex">
-												<div class="job-time me-auto">
-													<a href="javascript:void(0);"><span>Full Time</span></a>
-												</div>
-												<div class="salary-bx">
-													<span>$1200 - $ 2500</span>
-												</div>
-											</div>
-											<label class="like-btn">
-												<input type="checkbox">
-												<span class="checkmark"></span>
-											</label>
-										</div>
-									</li>
+								<ul class="post-job-bx browse-job-grid row" id="jobsGridContainer">
+									<!-- Dynamic jobs list will load here -->
 								</ul>
 								<div class="pagination-bx float-end m-t30">
-									<ul class="pagination">
-										<li class="previous"><a href="javascript:void(0);"><i class="ti-arrow-left"></i>
-												Prev</a></li>
-										<li class="active"><a href="javascript:void(0);">1</a></li>
-										<li><a href="javascript:void(0);">2</a></li>
-										<li><a href="javascript:void(0);">3</a></li>
-										<li class="next"><a href="javascript:void(0);">Next <i
-													class="ti-arrow-right"></i></a></li>
+									<ul class="pagination" id="jobsPagination">
+										<!-- Pagination loaded dynamically -->
 									</ul>
 								</div>
 							</div>
@@ -671,6 +443,8 @@
 	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/jobs-filter-grid.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

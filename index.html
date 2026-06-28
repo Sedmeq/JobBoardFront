@@ -68,7 +68,7 @@
                                     <h1>Your <span class="text-primary">Dream</span> Job Is Waiting For You
                                         <h6>Type your keywork, then click search to find your perfect job.</h6>
                                         <div class="find-job-bx style-1">
-                                            <form class="dezPlaceAni" action="category-all-jobs.html">
+                                            <form class="dezPlaceAni" id="homepageSearchForm" action="browse-job-filter-grid.html">
                                                 <div class="row align-items-center find-job-bx-inner">
                                                     <div class="col-sm-9 col-9  find-job-bx-inner1">
                                                         <div class="row align-items-center dz-input-group">
@@ -96,7 +96,7 @@
                                                                                 </svg>
                                                                             </span>
                                                                         </div>
-                                                                        <input type="text" class="form-control"
+                                                                        <input type="text" id="searchKeyword" class="form-control"
                                                                             placeholder="Job Title, Keywords">
                                                                     </div>
                                                                 </div>
@@ -127,7 +127,7 @@
                                                                                 </svg>
                                                                             </span>
                                                                         </div>
-                                                                        <input type="text" class="form-control"
+                                                                        <input type="text" id="searchLocation" class="form-control"
                                                                             placeholder="City Or Postcode">
                                                                     </div>
                                                                 </div>
@@ -429,133 +429,8 @@
                         </div>
                         <a href="javascript:void(0);" class="site-button style-1">Post a Job</a>
                     </div>
-                    <div class="row sp20 m-b20">
-                        <div class="col-xl-4 col-md-6">
-                            <div class="job-wrapper m-b20">
-                                <div class="jobs-profile d-flex align-items-center">
-                                    <div class="dz-icon"><img src="images/icons/google.png" alt=""></div>
-                                    <div class="Profile-inner">
-                                        <h5 class="profile-name">Google , New York</h5>
-                                        <span class="profile-positions">Sr. Product Designer</span>
-                                    </div>
-                                </div>
-                                <div class="Profile-inner-2">
-                                    <p>It is a long established fact that a reader
-                                        of a page when looking at its layout.</p>
-                                    <div class="dz-buttons d-flex align-items-center">
-                                        <a href="javascript:void(0);" class="site-button style-1">Apply Now</a>
-                                        <div class="dz-salary"><span>$560</span>/ Hour</div>
-                                    </div>
-                                </div>
-                                <div class="dz-timing"><span>2 Day ago</span><a href="javascript:void(0);">Full Time</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6">
-                            <div class="job-wrapper m-b20">
-                                <div class="jobs-profile d-flex align-items-center">
-                                    <div class="dz-icon"><img src="images/icons/microsoft.png" alt=""></div>
-                                    <div class="Profile-inner">
-                                        <h5 class="profile-name">Microsoft , California</h5>
-                                        <span class="profile-positions">Web Designer</span>
-                                    </div>
-                                </div>
-                                <div class="Profile-inner-2">
-                                    <p>It is a long established fact that a reader
-                                        of a page when looking at its layout.</p>
-                                    <div class="dz-buttons d-flex align-items-center">
-                                        <a href="javascript:void(0);" class="site-button style-1">Apply Now</a>
-                                        <div class="dz-salary"><span>$560</span>/ Hour</div>
-                                    </div>
-                                </div>
-                                <div class="dz-timing"><span>1 Day ago</span><a href="javascript:void(0);">Full Time</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6">
-                            <div class="job-wrapper m-b20">
-                                <div class="jobs-profile d-flex align-items-center">
-                                    <div class="dz-icon"><img src="images/icons/amazon.png" alt=""></div>
-                                    <div class="Profile-inner">
-                                        <h5 class="profile-name">Amazon , Southfield</h5>
-                                        <span class="profile-positions">IT Management</span>
-                                    </div>
-                                </div>
-                                <div class="Profile-inner-2">
-                                    <p>It is a long established fact that a reader
-                                        of a page when looking at its layout.</p>
-                                    <div class="dz-buttons d-flex align-items-center">
-                                        <a href="javascript:void(0);" class="site-button style-1">Apply Now</a>
-                                        <div class="dz-salary"><span>$560</span>/ Hour</div>
-                                    </div>
-                                </div>
-                                <div class="dz-timing"><span>2 Day ago</span><a href="javascript:void(0);">Full Time</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6">
-                            <div class="job-wrapper m-b20">
-                                <div class="jobs-profile d-flex align-items-center">
-                                    <div class="dz-icon"><img src="images/icons/github.png" alt=""></div>
-                                    <div class="Profile-inner">
-                                        <h5 class="profile-name">Github , Southfield</h5>
-                                        <span class="profile-positions">Sr. Product Designer</span>
-                                    </div>
-                                </div>
-                                <div class="Profile-inner-2">
-                                    <p>It is a long established fact that a reader
-                                        of a page when looking at its layout.</p>
-                                    <div class="dz-buttons d-flex align-items-center">
-                                        <a href="javascript:void(0);" class="site-button style-1">Apply Now</a>
-                                        <div class="dz-salary"><span>$560</span>/ Hour</div>
-                                    </div>
-                                </div>
-                                <div class="dz-timing"><span>2 Day ago</span><a href="javascript:void(0);">Full Time</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6">
-                            <div class="job-wrapper m-b20">
-                                <div class="jobs-profile d-flex align-items-center">
-                                    <div class="dz-icon"><img src="images/icons/dropbox.png" alt=""></div>
-                                    <div class="Profile-inner">
-                                        <h5 class="profile-name">Dropbox , New York</h5>
-                                        <span class="profile-positions">Web Designer</span>
-                                    </div>
-                                </div>
-                                <div class="Profile-inner-2">
-                                    <p>It is a long established fact that a reader
-                                        of a page when looking at its layout.</p>
-                                    <div class="dz-buttons d-flex align-items-center">
-                                        <a href="javascript:void(0);" class="site-button style-1">Apply Now</a>
-                                        <div class="dz-salary"><span>$560</span>/ Hour</div>
-                                    </div>
-                                </div>
-                                <div class="dz-timing"><span>1 Day ago</span><a href="javascript:void(0);">Full Time</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6">
-                            <div class="job-wrapper m-b20">
-                                <div class="jobs-profile d-flex align-items-center">
-                                    <div class="dz-icon"><img src="images/icons/adobe.png" alt=""></div>
-                                    <div class="Profile-inner">
-                                        <h5 class="profile-name">Adobe , California</h5>
-                                        <span class="profile-positions">IT Management</span>
-                                    </div>
-                                </div>
-                                <div class="Profile-inner-2">
-                                    <p>It is a long established fact that a reader
-                                        of a page when looking at its layout.</p>
-                                    <div class="dz-buttons d-flex align-items-center">
-                                        <a href="javascript:void(0);" class="site-button style-1">Apply Now</a>
-                                        <div class="dz-salary"><span>$560</span>/ Hour</div>
-                                    </div>
-                                </div>
-                                <div class="dz-timing"><span>2 Day ago</span><a href="javascript:void(0);">Full Time</a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row sp20 m-b20" id="latestJobsContainer">
+                        <!-- Dynamic jobs will load here -->
                     </div>
                     <div class="jobs-btn">
                         <a href="javascript:void(0);" class="site-button style-1">Load More</a>
@@ -711,6 +586,8 @@
     <script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
     <!-- ===== INCLUDE HEADER & FOOTER WITH JAVASCRIPT ===== -->
+    <script src="js/script/api-client.js"></script>
+    <script src="js/script/jobs-homepage.js"></script>
     <script src="js/headerAndFooter.js"></script>
 
 </body>

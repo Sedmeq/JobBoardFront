@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Job Applicants - JobBoard</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" type="text/css" href="css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/templete.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
+    <link rel="stylesheet" type="text/css" href="css/dark-layout.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .applicant-card {
+            border: 1px solid #e6e8f1;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: box-shadow .2s;
+        }
+
+        .applicant-card:hover {
+            box-shadow: 0 6px 24px rgba(0, 24, 128, .08);
+        }
+
+        .applicant-top {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .applicant-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #f4f5f9;
+        }
+
+        .applicant-name {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0;
+            color: #1f2533;
+        }
+
+        .applicant-meta {
+            font-size: 13px;
+            color: #6b7280;
+            margin: 3px 0 0;
+        }
+
+        .applicant-meta span {
+            margin-right: 14px;
+        }
+
+        .applicant-status {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: capitalize;
+            padding: 4px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .st-pending {
+            background: #fff4e0;
+            color: #b8860b;
+        }
+
+        .st-reviewing {
+            background: #e7f0ff;
+            color: #2e55fa;
+        }
+
+        .st-shortlisted {
+            background: #e6f7ee;
+            color: #1c8a55;
+        }
+
+        .st-interview {
+            background: #efe7ff;
+            color: #7a3df0;
+        }
+
+        .st-offered {
+            background: #e6f7ee;
+            color: #0f7a3d;
+        }
+
+        .st-rejected {
+            background: #ffe7e7;
+            color: #c0392b;
+        }
+
+        .st-withdrawn {
+            background: #eef0f5;
+            color: #6b7280;
+        }
+
+        .applicant-cover {
+            font-size: 13px;
+            color: #4a5260;
+            line-height: 1.6;
+            background: #f7f8fc;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-top: 14px;
+        }
+
+        .applicant-actions {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .applicant-actions .form-control {
+            width: auto;
+            display: inline-block;
+            height: 38px;
+            padding: 4px 10px;
+        }
+    </style>
+</head>
+
+<body id="bg">
+    <div class="page-wraper">
+        <div id="loading-area"></div>
+        <div id="header-placeholder"></div>
+
+        <div class="page-content bg-white">
+            <div class="content-block">
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="images/logo/icon3.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">@COMPANY</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li><a href="company-profile.html">
+                                                    <i class="far fa-user" aria-hidden="true"></i>
+                                                    <span>Company Profile</span></a></li>
+                                            <li><a href="company-post-jobs.html">
+                                                    <i class="far fa-file-alt" aria-hidden="true"></i>
+                                                    <span>Post A Job</span></a></li>
+                                            <li><a href="company-transactions.html">
+                                                    <i class="fa fa-random" aria-hidden="true"></i>
+                                                    <span>Transactions</span></a></li>
+                                            <li><a href="company-manage-job.html" class="active">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Manage jobs</span></a></li>
+                                            <li><a href="company-resume.html">
+                                                    <i class="far fa-id-card" aria-hidden="true"></i>
+                                                    <span>Resume</span></a></li>
+                                            <li><a href="jobs-change-password.html">
+                                                    <i class="fa fa-key" aria-hidden="true"></i>
+                                                    <span>Change Password</span></a></li>
+                                            <li><a href="index.html">
+                                                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                                                    <span>Log Out</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 float-start text-uppercase">
+                                            Applicants <span id="applicantsJobTitle" class="text-primary"></span>
+                                        </h5>
+                                        <a href="company-manage-job.html"
+                                            class="site-button right-arrow button-sm float-end">Back to Jobs</a>
+                                    </div>
+
+                                    <div class="m-b20">
+                                        <select id="applicantStatusFilter" class="form-control"
+                                            style="width:auto; display:inline-block;">
+                                            <option value="">All Statuses</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="reviewing">Reviewing</option>
+                                            <option value="shortlisted">Shortlisted</option>
+                                            <option value="interview">Interview</option>
+                                            <option value="offered">Offered</option>
+                                            <option value="rejected">Rejected</option>
+                                        </select>
+                                    </div>
+
+                                    <div id="applicantsList">
+                                        <div class="text-center p-a30">
+                                            <i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="pagination-bx float-end">
+                                        <ul class="pagination" id="applicantsPagination"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/jquery.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="plugins/magnific-popup/magnific-popup.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/dz.carousel.js"></script>
+    <script src="js/dz.ajax.js"></script>
+
+    <script src="js/script/api-client.js"></script>
+    <script src="js/script/employer-sidebar.js"></script>
+    <script src="js/script/applicants.js"></script>
+
+    <script src="js/headerAndFooter.js"></script>
+</body>
+
+</html>

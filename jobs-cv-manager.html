@@ -2,35 +2,11 @@
 <html lang="en">
 
 <head>
-
-	<!-- PAGE TITLE HERE -->
-	<title>Job Board - Job Portal HTML Template + RTL and Dark layout</title>
-
-	<!-- All Meta -->
+	<title>CV Manager - JobBoard</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="DexignZone">
-	<meta name="robots" content="">
-	<meta name="keywords"
-		content="applicant, candidate, career, companies, employment, freelancer, job board, job directory, Job guru, job listing, job posting, job seeker, recruiting, resume, resume listing">
-	<meta name="description"
-		content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
-	<meta property="og:title" content="Job Board - Job Portal HTML Template + RTL and Dark layout">
-	<meta property="og:description"
-		content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
-	<meta property="og:image" content="https://job-board.dexignzone.com/xhtml/social-image.png">
-	<meta name="format-detection" content="telephone=no">
-
-	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- FAVICONS ICON -->
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-	<!--[if lt IE 9]>
-	<script src="js/html5shiv.min.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 
 	<!-- STYLESHEETS -->
 	<link rel="stylesheet" type="text/css" href="css/plugins.css">
@@ -39,28 +15,71 @@
 	<link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
 	<link rel="stylesheet" type="text/css" href="css/dark-layout.css">
 
-
-	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
 		rel="stylesheet">
 
+	<style>
+		.cvm-card {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 14px;
+			border: 1px solid #e6e8f1;
+			border-radius: 10px;
+			padding: 18px 20px;
+			margin-bottom: 16px;
+		}
+
+		.cvm-left {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+		}
+
+		.cvm-icon {
+			width: 50px;
+			height: 50px;
+			border-radius: 10px;
+			flex-shrink: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #eef2ff;
+			color: #2e55fa;
+			font-size: 20px;
+		}
+
+		.cvm-card h6 {
+			margin: 0 0 3px;
+			font-weight: 700;
+			color: #1f2533;
+		}
+
+		.cvm-card .sub {
+			font-size: 13px;
+			color: #6b7280;
+			margin: 0;
+		}
+
+		.cvm-actions {
+			display: flex;
+			gap: 8px;
+			flex-wrap: wrap;
+		}
+	</style>
 </head>
 
 <body id="bg">
 	<div class="page-wraper">
 		<div id="loading-area"></div>
-		<!-- header -->
 		<div id="header-placeholder"></div>
 
-		<!-- header END -->
-		<!-- Content -->
 		<div class="page-content bg-white">
-			<!-- contact area -->
 			<div class="content-block">
-				<!-- Browse Jobs -->
 				<div class="section-full bg-white p-t50 p-b20">
 					<div class="container">
 						<div class="row">
@@ -72,16 +91,11 @@
 												<a href="javascript:void(0);">
 													<img alt="" src="images/team/pic1.jpg">
 												</a>
-												<div class="upload-link" title="update" data-bs-toggle="tooltip"
-													data-placement="right">
-													<input type="file" class="update-flie">
-													<i class="fa fa-camera"></i>
-												</div>
 											</div>
 											<div class="candidate-title">
 												<div class="">
-													<h4 class="m-b5"><a href="javascript:void(0);">David Matin</a></h4>
-													<p class="m-b0"><a href="javascript:void(0);">Web developer</a></p>
+													<h4 class="m-b5"><a href="javascript:void(0);">My Profile</a></h4>
+													<p class="m-b0"><a href="javascript:void(0);"></a></p>
 												</div>
 											</div>
 										</div>
@@ -114,237 +128,99 @@
 									</div>
 								</div>
 							</div>
+
 							<div class="col-xl-9 col-lg-8 m-b30">
-								<div class="job-bx clearfix">
-									<div class="job-bx-title clearfix">
-										<h5 class="font-weight-700 float-start text-uppercase">CV Manager</h5>
-										<div class="float-end">
-											<span class="select-title">Sort by freshness</span>
-											<select>
-												<option>Last 2 Months</option>
-												<option>Last Months</option>
-												<option>Last Weeks</option>
-												<option>Last 3 Days</option>
-											</select>
+								<div id="cvmMessage" class="alert" role="alert" style="display:none;"></div>
+								<div id="cvmLoading" class="text-center p-a30">
+									<i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
+									<p class="m-t10">Loading...</p>
+								</div>
+
+								<div id="cvmContent" style="display:none;">
+									<div class="job-bx clearfix">
+										<div class="job-bx-title clearfix">
+											<h5 class="font-weight-700 float-start text-uppercase">CV Manager</h5>
 										</div>
-									</div>
-									<ul class="cv-manager">
-										<li>
-											<div class="d-flex float-start">
-												<div class="job-post-company">
-													<a href="javascript:void(0);"><span>
-															<img alt="" src="images/testimonials/pic1.jpg" />
-														</span></a>
-												</div>
-												<div class="job-post-info">
-													<h6><a href="javascript:void(0);">Alexander Weir</a></h6>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> 11 days ago</li>
-													</ul>
+
+										<!-- Generated CV (profil məlumatlarından) -->
+										<div class="cvm-card">
+											<div class="cvm-left">
+												<div class="cvm-icon"><i class="fa fa-id-card"></i></div>
+												<div>
+													<h6>Generated CV</h6>
+													<p class="sub">Profil məlumatlarınızdan avtomatik yaranan CV.</p>
 												</div>
 											</div>
-											<div class="job-links action-bx">
-												<a href="files/pdf-sample.pdf" target="blank"><i
-														class="fa fa-download"></i></a>
-												<a href="javascript:void(0);"><i class="ti-trash"></i></a>
+											<div class="cvm-actions">
+												<a href="cv-view.html?me=1" target="_blank"
+													class="site-button button-sm"><i class="fa fa-eye"></i> View</a>
+												<a href="cv-view.html?me=1" target="_blank"
+													class="site-button button-sm"><i class="fa fa-download"></i>
+													Download PDF</a>
 											</div>
-										</li>
-										<li>
-											<div class="d-flex float-start">
-												<div class="job-post-company">
-													<a href="javascript:void(0);"><span>
-															<img alt="" src="images/testimonials/pic2.jpg" />
-														</span></a>
+										</div>
+
+										<!-- Uploaded Resume File -->
+										<div class="cvm-card">
+											<div class="cvm-left">
+												<div class="cvm-icon" style="background:#ffeceb;color:#e74c3c;">
+													<i class="fa fa-file-pdf"></i>
 												</div>
-												<div class="job-post-info">
-													<h6><a href="javascript:void(0);">Jennifer Wood</a></h6>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> 10 days ago</li>
-													</ul>
+												<div>
+													<h6>Uploaded Resume File</h6>
+													<p class="sub" id="cvmResumeStatus">No file uploaded yet.</p>
 												</div>
 											</div>
-											<div class="job-links action-bx">
-												<a href="files/pdf-sample.pdf" target="blank"><i
-														class="fa fa-download"></i></a>
-												<a href="javascript:void(0);"><i class="ti-trash"></i></a>
+											<div class="cvm-actions" id="cvmResumeActions" style="display:none;">
+												<a href="#" id="cvmResumeDownload" target="_blank"
+													class="site-button button-sm"><i class="fa fa-download"></i>
+													Download</a>
+												<a href="javascript:void(0);" id="cvmResumeDelete"
+													class="site-button button-sm"
+													style="background:#dc3545;border-color:#dc3545;"><i
+														class="fa fa-trash"></i> Delete</a>
 											</div>
-										</li>
-										<li>
-											<div class="d-flex float-start">
-												<div class="job-post-company">
-													<a href="javascript:void(0);"><span>
-															<img alt="" src="images/testimonials/pic3.jpg" />
-														</span></a>
-												</div>
-												<div class="job-post-info">
-													<h6><a href="javascript:void(0);">Melissa Hassib</a></h6>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> 09 days ago</li>
-													</ul>
-												</div>
+										</div>
+
+										<!-- Upload / Replace -->
+										<div class="m-t20">
+											<label class="font-weight-600">Upload / Replace Resume (PDF, DOC, DOCX —
+												max 5MB)</label>
+											<div class="d-flex m-t5" style="gap:8px;">
+												<input type="file" id="cvmFileInput" class="form-control"
+													accept=".pdf,.doc,.docx">
+												<button type="button" id="cvmUploadBtn" class="site-button button-sm">
+													Upload <span id="cvmUploadSpinner" style="display:none;"><i
+															class="fa fa-spinner fa-spin"></i></span></button>
 											</div>
-											<div class="job-links action-bx">
-												<a href="files/pdf-sample.pdf" target="blank"><i
-														class="fa fa-download"></i></a>
-												<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-											</div>
-										</li>
-										<li>
-											<div class="d-flex float-start">
-												<div class="job-post-company">
-													<a href="javascript:void(0);"><span>
-															<img alt="" src="images/testimonials/pic1.jpg" />
-														</span></a>
-												</div>
-												<div class="job-post-info">
-													<h6><a href="javascript:void(0);">Joseph Macfarlan</a></h6>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> 08 days ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="job-links action-bx">
-												<a href="files/pdf-sample.pdf" target="blank"><i
-														class="fa fa-download"></i></a>
-												<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-											</div>
-										</li>
-										<li>
-											<div class="d-flex float-start">
-												<div class="job-post-company">
-													<a href="javascript:void(0);"><span>
-															<img alt="" src="images/testimonials/pic2.jpg" />
-														</span></a>
-												</div>
-												<div class="job-post-info">
-													<h6><a href="javascript:void(0);">Henry Crooks</a></h6>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> 07 days ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="job-links action-bx">
-												<a href="files/pdf-sample.pdf" target="blank"><i
-														class="fa fa-download"></i></a>
-												<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-											</div>
-										</li>
-										<li>
-											<div class="d-flex float-start">
-												<div class="job-post-company">
-													<a href="javascript:void(0);"><span>
-															<img alt="" src="images/testimonials/pic3.jpg" />
-														</span></a>
-												</div>
-												<div class="job-post-info">
-													<h6><a href="javascript:void(0);">James Rogers</a></h6>
-													<ul>
-														<li><i class="fas fa-map-marker-alt"></i> Sacramento, California
-														</li>
-														<li><i class="far fa-bookmark"></i> Full Time</li>
-														<li><i class="far fa-clock"></i> 06 days ago</li>
-													</ul>
-												</div>
-											</div>
-											<div class="job-links action-bx">
-												<a href="files/pdf-sample.pdf" target="blank"><i
-														class="fa fa-download"></i></a>
-												<a href="javascript:void(0);"><i class="ti-trash"></i></a>
-											</div>
-										</li>
-									</ul>
-									<div class="pagination-bx float-end">
-										<ul class="pagination">
-											<li class="previous"><a href="javascript:void(0);"><i
-														class="ti-arrow-left"></i> Prev</a></li>
-											<li class="active"><a href="javascript:void(0);">1</a></li>
-											<li><a href="javascript:void(0);">2</a></li>
-											<li><a href="javascript:void(0);">3</a></li>
-											<li class="next"><a href="javascript:void(0);">Next <i
-														class="ti-arrow-right"></i></a></li>
-										</ul>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- Browse Jobs END -->
 			</div>
 		</div>
-		<!-- Content END-->
-		<!-- Modal Box -->
-		<div class="modal fade lead-form-modal" id="car-details" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<div class="modal-body row m-a0 clearfix">
-						<div class="col-lg-6 col-md-6 d-flex p-a0"
-							style="background-image: url(images/background/bg3.jpg);  background-position:center; background-size:cover;">
 
-						</div>
-						<div class="col-lg-6 col-md-6 p-a0">
-							<div class="lead-form browse-job text-left">
-								<form>
-									<h3 class="m-t0">Personal Details</h3>
-									<div class="form-group">
-										<input value="" class="form-control" placeholder="Name" />
-									</div>
-									<div class="form-group">
-										<input value="" class="form-control" placeholder="Mobile Number" />
-									</div>
-									<div class="clearfix">
-										<button type="button" class="btn-primary site-button btn-block">Submit </button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Modal Box End -->
-		<!-- Footer -->
 		<div id="footer-placeholder"></div>
-		<!-- Footer END -->
 		<button class="scroltop fa fa-chevron-up"></button>
 	</div>
-	<!-- JAVASCRIPT FILES ========================================= -->
-	<script src="js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
-	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
-	<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script><!-- FORM JS -->
-	<script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script><!-- FORM JS -->
-	<script src="plugins/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
-	<script src="plugins/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-	<script src="plugins/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-	<script src="plugins/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
-	<script src="plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
-	<script src="plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
-	<script src="plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
-	<script src="plugins/scroll/scrollbar.min.js"></script><!-- OWL SLIDER -->
-	<script src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
-	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
+
+	<!-- JAVASCRIPT FILES -->
+	<script src="js/jquery.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="plugins/magnific-popup/magnific-popup.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/dz.carousel.js"></script>
+	<script src="js/dz.ajax.js"></script>
+
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/candidate-sidebar.js"></script>
+	<script src="js/script/cv-manager.js"></script>
 
 	<script src="js/headerAndFooter.js"></script>
-
 </body>
 
 </html>

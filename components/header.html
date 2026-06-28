@@ -1,4 +1,161 @@
 <!-- header.html -->
+<style>
+    .jb-notif-wrap {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 8px;
+    }
+
+    .jb-notif-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #f4f5f9;
+        color: #2e55fa;
+        font-size: 18px;
+    }
+
+    .jb-notif-btn:hover {
+        background: #2e55fa;
+        color: #fff;
+    }
+
+    .jb-notif-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 5px;
+        border-radius: 9px;
+        background: #e74c3c;
+        color: #fff;
+        font-size: 11px;
+        line-height: 18px;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .jb-notif-panel {
+        position: absolute;
+        right: 0;
+        top: 52px;
+        width: 340px;
+        max-width: 90vw;
+        background: #fff;
+        border: 1px solid #e6e8f1;
+        border-radius: 10px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, .16);
+        z-index: 9999;
+        display: none;
+        overflow: hidden;
+    }
+
+    .jb-notif-panel.open {
+        display: block;
+    }
+
+    .jb-notif-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border-bottom: 1px solid #eef0f5;
+        font-weight: 700;
+        color: #1f2533;
+    }
+
+    .jb-notif-head a {
+        font-size: 12px;
+        font-weight: 600;
+        color: #2e55fa;
+    }
+
+    .jb-notif-list {
+        max-height: 360px;
+        overflow-y: auto;
+    }
+
+    .jb-notif-item {
+        display: block;
+        padding: 12px 16px;
+        border-bottom: 1px solid #f2f3f7;
+        color: #3a4150;
+        text-decoration: none;
+        transition: background .15s;
+    }
+
+    .jb-notif-item:hover {
+        background: #f7f8fc;
+        color: #3a4150;
+    }
+
+    .jb-notif-item.unread {
+        background: #eef2ff;
+    }
+
+    .jb-notif-item .jb-notif-title {
+        font-weight: 700;
+        font-size: 13px;
+        color: #1f2533;
+        margin: 0 0 2px;
+    }
+
+    .jb-notif-item .jb-notif-msg {
+        font-size: 12px;
+        color: #6b7280;
+        margin: 0;
+    }
+
+    .jb-notif-item .jb-notif-time {
+        font-size: 11px;
+        color: #9aa1ad;
+    }
+
+    .jb-notif-empty {
+        padding: 24px 16px;
+        text-align: center;
+        color: #9aa1ad;
+        font-size: 13px;
+    }
+
+    .layout-dark .jb-notif-btn {
+        background: #2a2c39;
+        color: #8a9bff;
+    }
+
+    .layout-dark .jb-notif-panel {
+        background: #1f212c;
+        border-color: #33364a;
+    }
+
+    .layout-dark .jb-notif-head {
+        color: #e7e9f2;
+        border-color: #33364a;
+    }
+
+    .layout-dark .jb-notif-item {
+        color: #c7cad6;
+        border-color: #2a2c39;
+    }
+
+    .layout-dark .jb-notif-item:hover {
+        background: #262936;
+    }
+
+    .layout-dark .jb-notif-item.unread {
+        background: #25304f;
+    }
+
+    .layout-dark .jb-notif-item .jb-notif-title {
+        color: #fff;
+    }
+</style>
 <header class="site-header mo-left header fullwidth">
     <!-- Main Header -->
     <div class="sticky-header main-bar-wraper navbar-expand-lg">
@@ -27,6 +184,22 @@
                             <input type="checkbox">
                             <span class="mode-label"></span>
                         </a>
+                        <!-- Notification Bell (yalnız login olduqda görünür) -->
+                        <div class="jb-notif-wrap" id="jbNotifWrap" style="display:none;">
+                            <a href="javascript:void(0);" class="jb-notif-btn" id="jbNotifBtn" title="Notifications">
+                                <i class="fa fa-bell"></i>
+                                <span class="jb-notif-badge" id="jbNotifBadge" style="display:none;">0</span>
+                            </a>
+                            <div class="jb-notif-panel" id="jbNotifPanel">
+                                <div class="jb-notif-head">
+                                    <span>Bildirişlər</span>
+                                    <a href="javascript:void(0);" id="jbNotifMarkAll">Hamısını oxu</a>
+                                </div>
+                                <div class="jb-notif-list" id="jbNotifList">
+                                    <div class="jb-notif-empty">Yüklənir...</div>
+                                </div>
+                            </div>
+                        </div>
                         <a href="register-3.html" class="site-button header-signup-btn"><i
                                 class="fa fa-user"></i>&nbsp;Sign&nbsp;Up</a>
                         <a href="login-3.html" class="site-button header-login-btn"><i
@@ -46,7 +219,7 @@
                             <a href="index.html">Home <i class=""></i></a>
 
                         </li>
-                        <li>
+                        <li class="nav-candidate">
                             <a href="javascript:void(0);">Candidates <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
                                 <li><a href="jobs-profile.html" class="dez-page">My Profile</a></li>
@@ -55,10 +228,11 @@
                                 <li><a href="jobs-alerts.html" class="dez-page">Jobs Alerts</a></li>
                                 <li><a href="jobs-saved-jobs.html" class="dez-page">Saved Job</a></li>
                                 <li><a href="jobs-cv-manager.html" class="dez-page">CV Manager</a></li>
+                                <li><a href="chat.html" class="dez-page">Messages</a></li>
                                 <li><a href="jobs-change-password.html" class="dez-page">Change Password</a></li>
                             </ul>
                         </li>
-                        <li>
+                        <li class="nav-employer">
                             <a href="javascript:void(0);">Employers <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
                                 <li><a href="company-profile.html" class="dez-page">Company Profile</a></li>
@@ -66,6 +240,7 @@
                                 <li><a href="company-post-jobs.html" class="dez-page">Post A Jobs</a></li>
                                 <li><a href="company-manage-job.html" class="dez-page">Manage jobs</a></li>
                                 <li><a href="company-transactions.html" class="dez-page">Transactions</a></li>
+                                <li><a href="chat.html" class="dez-page">Messages</a></li>
                                 <li><a href="browse-candidates.html" class="dez-page">Browse Candidates</a></li>
                                 <li><a href="javascript:void(0);" class="dez-page">Register <i
                                             class="fa fa-angle-right"></i></a>
@@ -76,6 +251,18 @@
                                                 Professional</a></li>
                                     </ul>
                                 </li>
+                            </ul>
+                        </li>
+                        <li class="nav-admin" style="display:none;">
+                            <a href="javascript:void(0);">Admin <i class="fa fa-chevron-down"></i></a>
+                            <ul class="sub-menu">
+                                <li><a href="admin-dashboard.html" class="dez-page">Dashboard</a></li>
+                                <li><a href="admin-users.html" class="dez-page">Manage Users</a></li>
+                                <li><a href="admin-companies.html" class="dez-page">Manage Companies</a></li>
+                                <li><a href="admin-transactions.html" class="dez-page">Transactions</a></li>
+                                <li><a href="admin-categories.html" class="dez-page">Categories</a></li>
+                                <li><a href="admin-messages.html" class="dez-page">Messages</a></li>
+                                <li><a href="admin-settings.html" class="dez-page">Settings</a></li>
                             </ul>
                         </li>
                         <li>
@@ -158,3 +345,7 @@
 <script src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 <script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
+<!-- API client + SignalR + Notifications -->
+<script src="js/script/api-client.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+<script src="js/script/notifications.js"></script>

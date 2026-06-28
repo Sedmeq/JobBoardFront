@@ -79,51 +79,34 @@
 			<div class="section-full browse-job-find">
 				<div class="container">
 					<div class="find-job-bx">
-						<form class="dezPlaceAni">
+						<form class="dezPlaceAni" id="candidateSearchForm">
 							<div class="row">
-								<div class="col-lg-4 col-md-6">
+								<div class="col-lg-5 col-md-6">
 									<div class="form-group">
-										<label>Job Title, Keywords, or Phrase</label>
+										<label>Keywords (name, headline, skills)</label>
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="">
+											<input type="text" id="candSearchKeyword" class="form-control"
+												placeholder="">
 											<div class="input-group-append">
 												<span class="input-group-text"><i class="fa fa-search"></i></span>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-md-6">
+								<div class="col-lg-5 col-md-6">
 									<div class="form-group">
-										<label>City, State or ZIP</label>
+										<label>Min. Experience (years)</label>
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="">
+											<input type="number" min="0" id="candSearchExperience" class="form-control"
+												placeholder="">
 											<div class="input-group-append">
-												<span class="input-group-text"><i
-														class="fas fa-map-marker-alt"></i></span>
+												<span class="input-group-text"><i class="fas fa-briefcase"></i></span>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-md-6">
-									<div class="form-group">
-										<select>
-											<option>Select Sector</option>
-											<option>Construction</option>
-											<option>Corodinator</option>
-											<option>Employer</option>
-											<option>Financial Career</option>
-											<option>Information Technology</option>
-											<option>Marketing</option>
-											<option>Quality check</option>
-											<option>Real Estate</option>
-											<option>Sales</option>
-											<option>Supporting</option>
-											<option>Teaching</option>
-										</select>
-									</div>
-								</div>
 								<div class="col-lg-2 col-md-6">
-									<button type="submit" class="site-button btn-block">Find Job</button>
+									<button type="submit" class="site-button btn-block">Search</button>
 								</div>
 							</div>
 						</form>
@@ -137,9 +120,16 @@
 						<div class="row">
 							<div class="col-xl-9 col-lg-8">
 								<div class="m-b30">
-									<input type="text" class="form-control" placeholder="Search freelancer services">
+									<h5 class="font-weight-700 text-uppercase" id="candFoundLabel">Loading...</h5>
 								</div>
-								<ul class="post-job-bx">
+								<ul class="post-job-bx" id="candidatesContainer">
+									<li class="text-center p-a30"><i
+											class="fa fa-spinner fa-spin fa-2x text-primary"></i></li>
+								</ul>
+								<div class="pagination-bx m-t30">
+									<ul class="pagination" id="candidatesPagination"></ul>
+								</div>
+								<ul class="post-job-bx" style="display:none;">
 									<li>
 										<div class="post-bx">
 											<div class="d-flex m-b30">
@@ -345,7 +335,7 @@
 										</div>
 									</li>
 								</ul>
-								<div class="pagination-bx m-t30">
+								<div class="pagination-bx m-t30" style="display:none;">
 									<ul class="pagination">
 										<li class="previous"><a href="javascript:void(0);"><i class="ti-arrow-left"></i>
 												Prev</a></li>
@@ -512,6 +502,8 @@
 	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/browse-candidates.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

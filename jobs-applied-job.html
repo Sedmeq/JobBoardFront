@@ -116,18 +116,29 @@
 							</div>
 							<div class="col-xl-9 col-lg-8 m-b30">
 								<div class="job-bx-title clearfix">
-									<h5 class="font-weight-700 float-start text-uppercase">2269 Jobs Found</h5>
+									<h5 class="font-weight-700 float-start text-uppercase" id="appliedFoundLabel">
+										Loading...</h5>
 									<div class="float-end">
-										<span class="select-title">Sort by freshness</span>
-										<select>
-											<option>Last 2 Months</option>
-											<option>Last Months</option>
-											<option>Last Weeks</option>
-											<option>Last 3 Days</option>
+										<span class="select-title">Filter by status</span>
+										<select id="appliedStatusFilter">
+											<option value="">All</option>
+											<option value="applied">Applied</option>
+											<option value="reviewing">Reviewing</option>
+											<option value="shortlisted">Shortlisted</option>
+											<option value="accepted">Accepted</option>
+											<option value="rejected">Rejected</option>
+											<option value="withdrawn">Withdrawn</option>
 										</select>
 									</div>
 								</div>
-								<ul class="post-job-bx browse-job">
+								<ul class="post-job-bx browse-job" id="appliedJobsContainer">
+									<li class="text-center p-a30"><i
+											class="fa fa-spinner fa-spin fa-2x text-primary"></i></li>
+								</ul>
+								<div class="pagination-bx m-t30">
+									<ul class="pagination" id="appliedPagination"></ul>
+								</div>
+								<ul class="post-job-bx browse-job" style="display:none;">
 									<li>
 										<div class="post-bx">
 											<div class="job-post-info m-a0">
@@ -204,7 +215,7 @@
 										</div>
 									</li>
 								</ul>
-								<div class="pagination-bx m-t30">
+								<div class="pagination-bx m-t30" style="display:none;">
 									<ul class="pagination">
 										<li class="previous"><a href="javascript:void(0);"><i class="ti-arrow-left"></i>
 												Prev</a></li>
@@ -278,6 +289,9 @@
 	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/candidate-sidebar.js"></script>
+	<script src="js/script/applied-jobs.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

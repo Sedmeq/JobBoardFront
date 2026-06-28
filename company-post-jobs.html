@@ -113,98 +113,138 @@
 								<div class="job-bx submit-resume">
 									<div class="job-bx-title clearfix">
 										<h5 class="font-weight-700 float-start text-uppercase">Post A Job</h5>
-										<a href="company-profile.html"
-											class="site-button right-arrow button-sm float-end">Back</a>
+										<a href="company-manage-job.html"
+											class="site-button right-arrow button-sm float-end">Manage Jobs</a>
 									</div>
-									<form>
+
+									<div id="postJobAlert" class="alert" role="alert" style="display:none;"></div>
+
+									<form id="postJobForm">
 										<div class="row">
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Job Title</label>
-													<input type="text" class="form-control"
-														placeholder="Enter Job Title">
+													<label>Job Title *</label>
+													<input type="text" id="jobTitle" class="form-control"
+														placeholder="Enter Job Title" required>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Your email</label>
-													<input type="email" class="form-control"
-														placeholder="info@gmail.com">
+													<label>Category ID *</label>
+													<input type="number" id="jobCategoryId" class="form-control"
+														placeholder="e.g. 1" min="1" required>
 												</div>
 											</div>
 											<div class="col-lg-12 col-md-12">
 												<div class="form-group">
-													<label>Job Tags</label>
-													<input type="text" class="form-control tags_input"
-														value="html,css,bootstrap,photoshop" />
+													<label>Required Skills (comma separated)</label>
+													<input type="text" id="jobSkills" class="form-control"
+														placeholder="React, JavaScript, CSS" />
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
 													<label>Job Type</label>
-													<select>
-														<option>Full Time</option>
-														<option>Part Time</option>
-														<option>Internship</option>
-														<option>Freelance</option>
+													<select id="jobType" class="form-control">
+														<option value="Full-time">Full Time</option>
+														<option value="Part-time">Part Time</option>
+														<option value="Contract">Contract</option>
+														<option value="Internship">Internship</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Experience</label>
-													<select>
-														<option>1 Years</option>
-														<option>2 Years</option>
-														<option>3 Years</option>
-														<option>4 Years</option>
-														<option>5 Years</option>
+													<label>Experience Level</label>
+													<select id="jobExperienceLevel" class="form-control">
+														<option value="Junior">Junior</option>
+														<option value="Mid">Mid</option>
+														<option value="Senior">Senior</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Minimum Salary ($):</label>
-													<input type="email" class="form-control" placeholder="e.g. 10000">
+													<label>Minimum Salary:</label>
+													<input type="number" id="jobSalaryMin" class="form-control"
+														placeholder="e.g. 1500">
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Maximum Salary ($):</label>
-													<input type="text" class="form-control" placeholder="e.g. 20000">
+													<label>Maximum Salary:</label>
+													<input type="number" id="jobSalaryMax" class="form-control"
+														placeholder="e.g. 2500">
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
-													<label>Region</label>
-													<select>
-														<option>New York</option>
-														<option>London</option>
-														<option>Los Angeles</option>
+													<label>Salary Currency</label>
+													<select id="jobSalaryCurrency" class="form-control">
+														<option value="USD">USD</option>
+														<option value="EUR">EUR</option>
+														<option value="AZN">AZN</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
 												<div class="form-group">
 													<label>Location</label>
-													<input type="text" class="form-control" placeholder="London">
+													<input type="text" id="jobLocation" class="form-control"
+														placeholder="e.g. Bakı">
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6">
+												<div class="form-group">
+													<label>Application Deadline</label>
+													<input type="date" id="jobDeadline" class="form-control">
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6">
+												<div class="form-group">
+													<label>Options</label>
+													<div>
+														<label style="font-weight:400;margin-right:15px;"><input
+																type="checkbox" id="jobIsRemote"> Remote</label>
+														<label style="font-weight:400;margin-right:15px;"><input
+																type="checkbox" id="jobIsUrgent"> Urgent</label>
+														<label style="font-weight:400;"><input type="checkbox"
+																id="jobIsSalaryVisible" checked> Show Salary</label>
+													</div>
 												</div>
 											</div>
 											<div class="col-lg-12 col-md-12">
 												<div class="form-group">
-													<label>Upload File</label>
-													<div class="custom-file">
-														<p class="m-a0">
-															<i class="fa fa-upload"></i>
-															Upload File
-														</p>
-														<input type="file" class="site-button form-control"
-															id="customFile">
-													</div>
+													<label>Description *</label>
+													<textarea id="jobDescription" class="form-control" rows="4"
+														placeholder="Job description..." required></textarea>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12">
+												<div class="form-group">
+													<label>Requirements</label>
+													<textarea id="jobRequirements" class="form-control" rows="3"
+														placeholder="Requirements..."></textarea>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12">
+												<div class="form-group">
+													<label>Responsibilities</label>
+													<textarea id="jobResponsibilities" class="form-control" rows="3"
+														placeholder="Responsibilities..."></textarea>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12">
+												<div class="form-group">
+													<label>Benefits</label>
+													<textarea id="jobBenefits" class="form-control" rows="3"
+														placeholder="Benefits..."></textarea>
 												</div>
 											</div>
 										</div>
-										<button type="button" class="site-button m-b30">Upload</button>
+										<button type="submit" id="postJobBtn" class="site-button m-b30">Post Job<span
+												id="postJobSpinner" style="display:none;"><i
+													class="fa fa-spinner fa-spin"></i></span></button>
 									</form>
 								</div>
 							</div>
@@ -271,6 +311,9 @@
 	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
 	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/employer-sidebar.js"></script>
+	<script src="js/script/post-job.js"></script>
 	<script src="js/headerAndFooter.js"></script>
 
 </body>

@@ -84,19 +84,21 @@
                             <div class="blog-post blog-single blog-style-1">
                                 <div class="dez-post-meta">
                                     <ul class="d-flex align-items-center">
-                                        <li class="post-date"><i class="fa fa-calendar"></i>September 18, 2021</li>
-                                        <li class="post-author"><i class="fa fa-user"></i>By <a href="#">demongo</a>
+                                        <li class="post-date"><i class="fa fa-calendar"></i><span id="bdDate">...</span>
                                         </li>
-                                        <li class="post-comment"><i class="far fa-comments"></i><a href="#">5k</a> </li>
+                                        <li class="post-author"><i class="fa fa-user"></i>By <a href="#"
+                                                id="bdAuthor">...</a>
+                                        </li>
+                                        <li class="post-comment"><i class="far fa-comments"></i><a href="#"><span
+                                                    id="bdViews">0</span></a> </li>
                                     </ul>
                                 </div>
                                 <div class="dez-post-title">
-                                    <h4 class="post-title m-t0">Do you have a job that the average person doesnӴ even
-                                        know exists?</h4>
+                                    <h4 class="post-title m-t0" id="bdTitle">Loading article...</h4>
                                 </div>
-                                <div class="dez-post-media dez-img-effect zoom-slow m-t20"><img
+                                <div class="dez-post-media dez-img-effect zoom-slow m-t20"><img id="bdImage"
                                         src="images/blog/default/thum1.jpg" alt=""></div>
-                                <div class="dez-post-text">
+                                <div class="dez-post-text" id="bdContent">
                                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                         Ipsum has been the industry standard dummy
                                         text ever since the 1500s, when an unknown printer took a galley of type and
@@ -194,10 +196,10 @@
                             </div>
                             <div class="clear" id="comment-list">
                                 <div class="comments-area" id="comments">
-                                    <h2 class="comments-title">8 Comments</h2>
+                                    <h2 class="comments-title" id="bdCommentCount">Comments</h2>
                                     <div class="clearfix m-b20">
                                         <!-- comment list END -->
-                                        <ol class="comment-list">
+                                        <ol class="comment-list" id="bdCommentList">
                                             <li class="comment">
                                                 <div class="comment-body">
                                                     <div class="comment-author vcard"> <img class="avatar photo"
@@ -315,35 +317,19 @@
                                         <!-- comment list END -->
                                         <!-- Form -->
                                         <div class="comment-respond" id="respond">
-                                            <h4 class="comment-reply-title" id="reply-title">Leave a Reply <small> <a
-                                                        style="display:none;" href="javascript:void(0);"
-                                                        id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a>
-                                                </small> </h4>
-                                            <form class="comment-form" id="commentform" method="post"
-                                                action="http://sedatelab.com/developer/donate/wp-comments-post.php">
-                                                <p class="comment-form-author">
-                                                    <label for="author">Name <span class="required">*</span></label>
-                                                    <input type="text" value="Author" name="Author" placeholder="Author"
-                                                        id="author">
-                                                </p>
-                                                <p class="comment-form-email">
-                                                    <label for="email">Email <span class="required">*</span></label>
-                                                    <input type="text" value="email" placeholder="Email" name="email"
-                                                        id="email">
-                                                </p>
-                                                <p class="comment-form-url">
-                                                    <label for="url">Website</label>
-                                                    <input type="text" value="url" placeholder="Website" name="url"
-                                                        id="url">
-                                                </p>
+                                            <h4 class="comment-reply-title" id="reply-title">Leave a Reply</h4>
+                                            <div id="bdCommentAlert" class="alert" role="alert" style="display:none;">
+                                            </div>
+                                            <form class="comment-form" id="commentform">
                                                 <p class="comment-form-comment">
                                                     <label for="comment">Comment</label>
-                                                    <textarea rows="8" name="comment" placeholder="Comment"
-                                                        id="comment"></textarea>
+                                                    <textarea rows="8" name="comment"
+                                                        placeholder="Write your comment..."
+                                                        id="bdCommentText"></textarea>
                                                 </p>
                                                 <p class="form-submit">
                                                     <input type="submit" value="Post Comment" class="submit site-button"
-                                                        id="submit" name="submit">
+                                                        id="bdCommentSubmit" name="submit">
                                                 </p>
                                             </form>
                                         </div>
@@ -576,6 +562,8 @@
     <script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
     <script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
 
+    <script src="js/script/api-client.js"></script>
+    <script src="js/script/blog-details.js"></script>
     <script src="js/headerAndFooter.js"></script>
 
 </body>
