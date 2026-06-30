@@ -165,7 +165,7 @@ $(document).ready(function ()
         var keyword = $('#searchKeyword').val().trim();
         var location = $('#searchLocation').val().trim();
 
-        var searchUrl = 'browse-job-filter-grid.html';
+        var searchUrl = 'browse-job-filter-list.html';
         var params = [];
         if (keyword) params.push('keyword=' + encodeURIComponent(keyword));
         if (location) params.push('location=' + encodeURIComponent(location));

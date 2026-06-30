@@ -346,9 +346,9 @@
                                 <div class="widget">
                                     <h6 class="widget-title style-1">Search</h6>
                                     <div class="search-bx style-1">
-                                        <form role="search" method="post">
+                                        <form role="search" id="bdSearchForm">
                                             <div class="input-group">
-                                                <input name="text" class="form-control"
+                                                <input name="text" id="bdSearchInput" class="form-control"
                                                     placeholder="Enter your keywords..." type="text">
                                                 <span class="input-group-btn">
                                                     <button type="submit" class="fa fa-search text-primary"></button>
@@ -359,126 +359,22 @@
                                 </div>
                                 <div class="widget recent-posts-entry">
                                     <h6 class="widget-title style-1">Recent Posts</h6>
-                                    <div class="widget-post-bx">
-                                        <div class="widget-post clearfix">
-                                            <div class="dez-post-media"> <img src="images/blog/recent-blog/pic1.jpg"
-                                                    width="200" height="143" alt=""> </div>
-                                            <div class="dez-post-info">
-                                                <div class="dez-post-header">
-                                                    <h6 class="post-title"><a href="blog-details.html">11 Tips to Help
-                                                            You Get New Clients Through Cold Calling</a></h6>
-                                                </div>
-                                                <div class="dez-post-meta">
-                                                    <ul class="d-flex align-items-center">
-                                                        <li class="post-date"><i class="fa fa-calendar"></i>Sep 18, 2021
-                                                        </li>
-                                                        <li class="post-comment"><a href="#"><i
-                                                                    class="far fa-comments"></i>5k</a> </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="widget-post clearfix">
-                                            <div class="dez-post-media"> <img src="images/blog/recent-blog/pic2.jpg"
-                                                    width="200" height="160" alt=""> </div>
-                                            <div class="dez-post-info">
-                                                <div class="dez-post-header">
-                                                    <h6 class="post-title"><a href="blog-details.html">Do you have a job
-                                                            that the average person doesn’t even know exists?</a></h6>
-                                                </div>
-                                                <div class="dez-post-meta">
-                                                    <ul class="d-flex align-items-center">
-                                                        <li class="post-date"><i class="fa fa-calendar"></i>Sep 18, 2021
-                                                        </li>
-                                                        <li class="post-comment"><a href="#"><i
-                                                                    class="far fa-comments"></i>5k</a> </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="widget-post clearfix">
-                                            <div class="dez-post-media"> <img src="images/blog/recent-blog/pic3.jpg"
-                                                    width="200" height="160" alt=""> </div>
-                                            <div class="dez-post-info">
-                                                <div class="dez-post-header">
-                                                    <h6 class="post-title"><a href="blog-details.html">Using Banner
-                                                            Stands To Increase Trade Show Traffic</a></h6>
-                                                </div>
-                                                <div class="dez-post-meta">
-                                                    <ul class="d-flex align-items-center">
-                                                        <li class="post-date"><i class="fa fa-calendar"></i>Sep 18, 2021
-                                                        </li>
-                                                        <li class="post-comment"><a href="#"><i
-                                                                    class="far fa-comments"></i>5k</a> </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="widget-post-bx" id="bdRecentPosts">
+                                        <p class="text-muted font-13">Loading...</p>
                                     </div>
                                 </div>
 
-                                <div class="widget widget_gallery gallery-grid-3">
-                                    <h6 class="widget-title style-1">Our services</h6>
-                                    <ul class="lightgallery">
-                                        <li>
-                                            <span data-exthumbimage="images/gallery/small/pic1.jpg"
-                                                data-src="images/gallery/middle/pic1.jpg"
-                                                class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-                                                title="Maintenance">
-                                                <img src="images/gallery/small/pic1.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span data-exthumbimage="images/gallery/small/pic2.jpg"
-                                                data-src="images/gallery/middle/pic2.jpg"
-                                                class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-                                                title="Maintenance">
-                                                <img src="images/gallery/small/pic2.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span data-exthumbimage="images/gallery/small/pic3.jpg"
-                                                data-src="images/gallery/middle/pic3.jpg"
-                                                class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-                                                title="Maintenance">
-                                                <img src="images/gallery/small/pic3.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span data-exthumbimage="images/gallery/small/pic4.jpg"
-                                                data-src="images/gallery/middle/pic4.jpg"
-                                                class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-                                                title="Maintenance">
-                                                <img src="images/gallery/small/pic4.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span data-exthumbimage="images/gallery/small/pic5.jpg"
-                                                data-src="images/gallery/middle/pic5.jpg"
-                                                class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-                                                title="Maintenance">
-                                                <img src="images/gallery/small/pic5.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span data-exthumbimage="images/gallery/small/pic6.jpg"
-                                                data-src="images/gallery/middle/pic6.jpg"
-                                                class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-                                                title="Maintenance">
-                                                <img src="images/gallery/small/pic6.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
+                                <div class="widget widget_tag_cloud">
+                                    <h6 class="widget-title style-1">Tags</h6>
+                                    <div class="tagcloud" id="bdTagsList">
+                                        <span class="text-muted font-13">Loading...</span>
+                                    </div>
                                 </div>
 
                                 <div class="widget widget_archive">
                                     <h6 class="widget-title style-1">Categories List</h6>
-                                    <ul>
-                                        <li><a href="javascript:void(0);">aciform</a></li>
-                                        <li><a href="javascript:void(0);">championship</a></li>
-                                        <li><a href="javascript:void(0);">chastening</a></li>
-                                        <li><a href="javascript:void(0);">clerkship</a></li>
-                                        <li><a href="javascript:void(0);">disinclination</a></li>
+                                    <ul id="bdCategoriesList">
+                                        <li class="text-muted font-13">Loading...</li>
                                     </ul>
                                 </div>
 

@@ -30,6 +30,10 @@ $(document).ready(function ()
 
     function renderComments(comments)
     {
+        var currentUser = null;
+        try { currentUser = JSON.parse(localStorage.getItem('user') || 'null'); } catch (e) { }
+        var isAdmin = currentUser && currentUser.role === 'admin';
+
         var list = $('#bdCommentList');
         list.empty();
         if (!comments || !comments.length)
@@ -43,18 +47,38 @@ $(document).ready(function ()
         {
             var author = (c.author && c.author.fullName) || 'User';
             var avatar = (c.author && c.author.avatarUrl) || 'images/testimonials/pic1.jpg';
+            var canDelete = isAdmin || (currentUser && c.author && currentUser.id === c.author.id);
+            var delBtn = canDelete
+                ? ' <a href="javascript:void(0);" class="bd-comment-del" data-id="' + c.id + '" style="color:#c0392b;font-size:12px;margin-left:8px;"><i class="fa fa-trash"></i> Delete</a>'
+                : '';
             list.append(
-                '<li class="comment">' +
+                '<li class="comment" data-cid="' + c.id + '">' +
                 '<div class="comment-body">' +
                 '<div class="comment-author vcard"> <img class="avatar photo" src="' + avatar + '" alt="" onerror="this.src=\'images/testimonials/pic1.jpg\'"> ' +
                 '<cite class="fn">' + escapeHtml(author) + '</cite> <span class="says">says:</span> </div>' +
-                '<div class="comment-meta"> <a href="javascript:void(0);">' + formatDate(c.createdAt) + '</a> </div>' +
+                '<div class="comment-meta"> <a href="javascript:void(0);">' + formatDate(c.createdAt) + '</a>' + delBtn + ' </div>' +
                 '<p>' + escapeHtml(c.content) + '</p>' +
                 '</div>' +
                 '</li>'
             );
         });
     }
+
+    // Şərh sil (admin və ya öz şərhi)
+    $('#bdCommentList').on('click', '.bd-comment-del', function ()
+    {
+        var id = $(this).attr('data-id');
+        if (!confirm('Delete this comment?')) return;
+        var li = $('li[data-cid="' + id + '"]');
+        li.css('opacity', '0.5');
+        apiFetch('/blog/comments/' + id, { method: 'DELETE' })
+            .then(function () { loadPost(); })
+            .catch(function ()
+            {
+                li.css('opacity', '1');
+                showCommentAlert('Could not delete the comment.', 'danger');
+            });
+    });
 
     function loadPost()
     {
@@ -127,4 +151,66 @@ $(document).ready(function ()
     });
 
     loadPost();
+
+    // ─── Sidebar: search, recent posts, categories, tags ─────
+    $('#bdSearchForm').on('submit', function (e)
+    {
+        e.preventDefault();
+        var kw = $('#bdSearchInput').val().trim();
+        window.location.href = 'blog-classic-sidebar.html' + (kw ? '?keyword=' + encodeURIComponent(kw) : '');
+    });
+
+    apiFetch('/blog/posts?page=1&pageSize=5')
+        .then(function (result)
+        {
+            var box = $('#bdRecentPosts');
+            var items = (result && result.data && result.data.items) || [];
+            box.empty();
+            if (!items.length) { box.html('<p class="text-muted font-13">No posts yet.</p>'); return; }
+            items.forEach(function (post)
+            {
+                var img = post.featuredImageUrl || 'images/blog/recent-blog/pic1.jpg';
+                var link = 'blog-details.html?slug=' + encodeURIComponent(post.slug);
+                box.append(
+                    '<div class="widget-post clearfix">' +
+                    '<div class="dez-post-media"> <img src="' + img + '" width="200" height="143" alt="" onerror="this.src=\'images/blog/recent-blog/pic1.jpg\'"> </div>' +
+                    '<div class="dez-post-info"><div class="dez-post-header">' +
+                    '<h6 class="post-title"><a href="' + link + '">' + escapeHtml(post.title) + '</a></h6></div>' +
+                    '<div class="dez-post-meta"><ul class="d-flex align-items-center">' +
+                    '<li class="post-date"><i class="fa fa-calendar"></i> ' + formatDate(post.publishedAt || post.createdAt) + '</li>' +
+                    '<li class="post-comment"><i class="far fa-comments"></i> ' + (post.commentCount || 0) + '</li>' +
+                    '</ul></div></div></div>'
+                );
+            });
+        })
+        .catch(function () { });
+
+    apiFetch('/blog/categories')
+        .then(function (result)
+        {
+            var ul = $('#bdCategoriesList');
+            var items = (result && result.data) || [];
+            ul.empty();
+            if (!items.length) { ul.html('<li class="text-muted font-13">No categories.</li>'); return; }
+            items.forEach(function (c)
+            {
+                ul.append('<li><a href="blog-classic-sidebar.html?category=' + encodeURIComponent(c.category) + '">' +
+                    escapeHtml(c.category) + ' (' + (c.postCount || 0) + ')</a></li>');
+            });
+        })
+        .catch(function () { });
+
+    apiFetch('/blog/tags')
+        .then(function (result)
+        {
+            var box = $('#bdTagsList');
+            var items = (result && result.data) || [];
+            box.empty();
+            if (!items.length) { box.html('<span class="text-muted font-13">No tags.</span>'); return; }
+            items.forEach(function (t)
+            {
+                box.append('<a href="blog-classic-sidebar.html?tag=' + encodeURIComponent(t.tag) + '">' + escapeHtml(t.tag) + '</a> ');
+            });
+        })
+        .catch(function () { });
 });

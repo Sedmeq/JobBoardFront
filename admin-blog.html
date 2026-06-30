@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Job Board - Manage Blog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/templete.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
+    <link rel="stylesheet" type="text/css" href="css/dark-layout.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body id="bg">
+    <div class="page-wraper">
+        <div id="loading-area"></div>
+        <div id="header-placeholder"></div>
+
+        <div class="page-content bg-white">
+            <div class="content-block">
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info admin-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);"><img alt=""
+                                                        src="images/team/pic1.jpg"></a>
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">Admin</a></h4>
+                                                <p class="m-b0"><a href="javascript:void(0);">Administrator</a></p>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li><a href="admin-dashboard.html"><i class="fa fa-tachometer-alt"></i>
+                                                    <span>Dashboard</span></a></li>
+                                            <li><a href="admin-users.html"><i class="far fa-user"></i>
+                                                    <span>Manage Users</span></a></li>
+                                            <li><a href="admin-companies.html"><i class="fa fa-building"></i>
+                                                    <span>Manage Companies</span></a></li>
+                                            <li><a href="admin-jobs.html"><i class="fa fa-briefcase"></i>
+                                                    <span>Manage Jobs</span></a></li>
+                                            <li><a href="admin-transactions.html"><i class="fa fa-random"></i>
+                                                    <span>Transactions</span></a></li>
+                                            <li><a href="admin-categories.html"><i class="fa fa-tags"></i>
+                                                    <span>Categories</span></a></li>
+                                            <li><a href="admin-blog.html" class="active"><i class="fa fa-newspaper"></i>
+                                                    <span>Blog</span></a></li>
+                                            <li><a href="admin-partners.html"><i class="fa fa-handshake"></i>
+                                                    <span>Partners</span></a></li>
+                                            <li><a href="admin-testimonials.html"><i class="fa fa-quote-right"></i>
+                                                    <span>Testimonials</span></a></li>
+                                            <li><a href="admin-messages.html"><i class="fa fa-envelope"></i>
+                                                    <span>Messages</span></a></li>
+                                            <li><a href="admin-settings.html"><i class="fa fa-cog"></i>
+                                                    <span>Settings</span></a></li>
+                                            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i>
+                                                    <span>Log Out</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 m-b30">
+                                <!-- Create / Edit Post -->
+                                <div class="job-bx submit-resume m-b30">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 id="blogFormTitle" class="font-weight-700 float-start text-uppercase">
+                                            Create Post</h5>
+                                    </div>
+                                    <div id="blogAlert" class="alert" role="alert" style="display:none;"></div>
+                                    <form id="blogForm">
+                                        <input type="hidden" id="blogId" value="">
+                                        <div class="row">
+                                            <div class="col-lg-8 form-group">
+                                                <label>Title *</label>
+                                                <input type="text" id="blogTitle" class="form-control"
+                                                    placeholder="Post title" required>
+                                            </div>
+                                            <div class="col-lg-4 form-group">
+                                                <label>Category</label>
+                                                <input type="text" id="blogCategory" class="form-control"
+                                                    placeholder="e.g. Career">
+                                            </div>
+                                            <div class="col-lg-4 form-group">
+                                                <label>Status</label>
+                                                <select id="blogStatus" class="form-control">
+                                                    <option value="published">Published</option>
+                                                    <option value="draft">Draft</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4 form-group">
+                                                <label>Read Time (min)</label>
+                                                <input type="number" id="blogReadTime" class="form-control" min="0"
+                                                    placeholder="5">
+                                            </div>
+                                            <div class="col-lg-4 form-group">
+                                                <label>Featured?</label>
+                                                <select id="blogFeatured" class="form-control">
+                                                    <option value="false">No</option>
+                                                    <option value="true">Yes</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-12 form-group">
+                                                <label>Featured Image</label>
+                                                <div class="d-flex" style="gap:8px;">
+                                                    <input type="file" id="blogImageFile" class="form-control"
+                                                        accept="image/*">
+                                                    <span id="blogImageSpinner" style="display:none;align-self:center;">
+                                                        <i class="fa fa-spinner fa-spin text-primary"></i></span>
+                                                </div>
+                                                <small class="text-muted">Kompüterdən şəkil seçin (PNG/JPG/WEBP, max
+                                                    5MB) və ya aşağıya birbaşa URL yazın.</small>
+                                                <input type="text" id="blogImage" class="form-control m-t10"
+                                                    placeholder="https://... (avtomatik dolur)">
+                                                <img id="blogImagePreview" src="" alt="" style="display:none;
+                                                    max-height:120px;border-radius:8px;margin-top:10px;">
+                                            </div>
+                                            <div class="col-lg-12 form-group">
+                                                <label>Tags (comma separated)</label>
+                                                <input type="text" id="blogTags" class="form-control"
+                                                    placeholder="career, tips, jobs">
+                                            </div>
+                                            <div class="col-lg-12 form-group">
+                                                <label>Excerpt</label>
+                                                <textarea id="blogExcerpt" class="form-control" rows="2"
+                                                    placeholder="Short summary..."></textarea>
+                                            </div>
+                                            <div class="col-lg-12 form-group">
+                                                <label>Content *</label>
+                                                <textarea id="blogContent" class="form-control" rows="8"
+                                                    placeholder="Full article content (HTML allowed)..."></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="submit" id="blogSubmitBtn" class="site-button">Create Post<span
+                                                id="blogSpinner" style="display:none;"><i
+                                                    class="fa fa-spinner fa-spin"></i></span></button>
+                                        <button type="button" id="blogCancelBtn" class="site-button outline"
+                                            style="display:none;">Cancel</button>
+                                    </form>
+                                </div>
+
+                                <!-- All Posts -->
+                                <div class="job-bx submit-resume m-b30">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 float-start text-uppercase">All Posts</h5>
+                                        <a href="javascript:void(0);" id="blogReloadBtn"
+                                            class="site-button right-arrow button-sm float-end">Refresh</a>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Category</th>
+                                                    <th>Status</th>
+                                                    <th>Views</th>
+                                                    <th class="text-end">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="blogTableBody">
+                                                <tr>
+                                                    <td colspan="5" class="text-center p-a20"><i
+                                                            class="fa fa-spinner fa-spin fa-2x text-primary"></i></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Comments -->
+                                <div class="job-bx submit-resume">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 float-start text-uppercase">Comments</h5>
+                                        <a href="javascript:void(0);" id="commentReloadBtn"
+                                            class="site-button right-arrow button-sm float-end">Refresh</a>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Author</th>
+                                                    <th>Comment</th>
+                                                    <th>Post</th>
+                                                    <th class="text-end">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="commentTableBody">
+                                                <tr>
+                                                    <td colspan="4" class="text-center p-a20"><i
+                                                            class="fa fa-spinner fa-spin fa-2x text-primary"></i></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="plugins/magnific-popup/magnific-popup.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/dz.carousel.js"></script>
+    <script src="js/dz.ajax.js"></script>
+
+    <script src="js/script/api-client.js"></script>
+    <script src="js/script/admin-common.js"></script>
+    <script src="js/script/admin-blog.js"></script>
+    <script src="js/headerAndFooter.js"></script>
+</body>
+
+</html>

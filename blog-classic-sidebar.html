@@ -2,502 +2,149 @@
 <html lang="en">
 
 <head>
-
-	<!-- PAGE TITLE HERE -->
-	<title>Job Board - Job Portal HTML Template + RTL and Dark layout</title>
-
-	<!-- All Meta -->
+	<title>Blog - JobBoard</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="DexignZone">
-	<meta name="robots" content="">
-	<meta name="keywords"
-		content="applicant, candidate, career, companies, employment, freelancer, job board, job directory, Job guru, job listing, job posting, job seeker, recruiting, resume, resume listing">
-	<meta name="description"
-		content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
-	<meta property="og:title" content="Job Board - Job Portal HTML Template + RTL and Dark layout">
-	<meta property="og:description"
-		content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
-	<meta property="og:image" content="https://job-board.dexignzone.com/xhtml/social-image.png">
-	<meta name="format-detection" content="telephone=no">
-
-	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- FAVICONS ICON -->
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-	<!--[if lt IE 9]>
-	<script src="js/html5shiv.min.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-
-	<!-- STYLESHEETS -->
 	<link rel="stylesheet" type="text/css" href="css/plugins.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/templete.css">
 	<link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
 	<link rel="stylesheet" type="text/css" href="css/dark-layout.css">
 
+	<style>
+		/* Dark mode-da sidebar input/yazıların görünməsi */
+		body.layout-dark .side-bar .form-control,
+		body.layout-dark #blogSearchInput {
+			color: #e7e9f2;
+			background-color: #1f212c;
+			border-color: #33364a;
+		}
 
-	<!-- Google Fonts -->
+		body.layout-dark .side-bar .form-control::placeholder,
+		body.layout-dark #blogSearchInput::placeholder {
+			color: #9aa1ad;
+		}
+
+		body.layout-dark .widget-title,
+		body.layout-dark .widget_archive ul li a,
+		body.layout-dark .widget-post .post-title a,
+		body.layout-dark .tagcloud a {
+			color: #e7e9f2;
+		}
+	</style>
+
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
 		rel="stylesheet">
-
 </head>
 
 <body id="bg">
 	<div class="page-wraper">
 		<div id="loading-area"></div>
-		<!-- header -->
 		<div id="header-placeholder"></div>
 
-		<!-- header END -->
-		<!-- Content -->
 		<div class="page-content bg-white">
-			<!-- inner page banner -->
 			<div class="dez-bnr-inr overlay-black-middle" style="background-image:url(images/banner/bnr1.jpg);">
 				<div class="container">
 					<div class="dez-bnr-inr-entry">
-						<h1 class="text-white">Blog Classic Sidebar</h1>
-						<!-- Breadcrumb row -->
+						<h1 class="text-white">Our Blog</h1>
 						<div class="breadcrumb-row">
 							<ul class="list-inline">
 								<li><a href="index.html">Home</a></li>
-								<li>Blog Classic Sidebar</li>
+								<li>Blog</li>
 							</ul>
 						</div>
-						<!-- Breadcrumb row END -->
 					</div>
 				</div>
 			</div>
-			<!-- inner page banner END -->
+
 			<div class="content-area">
 				<div class="container">
 					<div class="row">
-						<!-- Left part start -->
-						<div class="col-lg-8 col-md-7 col-sm-12">
-							<!-- Blog large img -->
-							<div class="blog-post blog-lg blog-style-1">
-								<div class="dez-post-media dez-img-effect zoom-slow radius-sm"> <a
-										href="blog-details.html"><img src="images/blog/default/thum2.jpg" alt=""></a>
-								</div>
-								<div class="dez-info">
-									<div class="dez-post-meta">
-										<ul class="d-flex align-items-center">
-											<li class="post-date"><i class="fa fa-calendar"></i>September 18, 2021</li>
-											<li class="post-author"><i class="fa fa-user"></i>By <a href="#">demongo</a>
-											</li>
-											<li class="post-comment"><i class="far fa-comments"></i><a href="#">5k</a>
-											</li>
-										</ul>
-									</div>
-									<div class="dez-post-title ">
-										<h4 class="post-title font-24"><a href="blog-details.html">Do you have a job
-												that the average person doesnt even know exists?</a></h4>
-									</div>
-									<div class="dez-post-text">
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-											Lorem Ipsum has been the industry's standard dummy
-											text ever since the 1500s, when an unknown printer took a galley of type and
-											scrambled it to make a type specimen book.</p>
-									</div>
-									<div class="dez-post-readmore blog-share">
-										<a href="blog-details.html" title="READ MORE" rel="bookmark"
-											class="site-button-link"><span class="fw6">READ MORE</span></a>
-									</div>
+						<!-- Posts -->
+						<div class="col-lg-8 col-md-7">
+							<div id="blogActiveFilter" class="m-b20" style="display:none;">
+								<span class="badge"
+									style="background:#eef2ff;color:#2e55fa;padding:8px 14px;border-radius:20px;">
+									<span id="blogActiveFilterText"></span>
+									<a href="javascript:void(0);" id="blogClearFilter"
+										style="color:#c0392b;margin-left:8px;">&times; clear</a>
+								</span>
+							</div>
+							<div id="blogPostsContainer">
+								<div class="text-center p-a30"><i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
 								</div>
 							</div>
-							<div class="blog-post blog-lg blog-style-1">
-								<div class="dez-post-media dez-img-effect zoom-slow radius-sm"> <a
-										href="blog-details.html"><img src="images/blog/default/thum1.jpg" alt=""></a>
-								</div>
-								<div class="dez-info">
-									<div class="dez-post-meta">
-										<ul class="d-flex align-items-center">
-											<li class="post-date"><i class="fa fa-calendar"></i>September 18, 2021</li>
-											<li class="post-author"><i class="fa fa-user"></i>By <a href="#">demongo</a>
-											</li>
-											<li class="post-comment"><i class="far fa-comments"></i><a href="#">5k</a>
-											</li>
-										</ul>
-									</div>
-									<div class="dez-post-title ">
-										<h4 class="post-title font-24"><a href="blog-details.html">Do you have a job
-												that the average person doesnӴ even know exists?</a></h4>
-									</div>
-									<div class="dez-post-text">
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-											Lorem Ipsum has been the industry's standard dummy
-											text ever since the 1500s, when an unknown printer took a galley of type and
-											scrambled it to make a type specimen book.</p>
-									</div>
-									<div class="dez-post-readmore blog-share">
-										<a href="blog-details.html" title="READ MORE" rel="bookmark"
-											class="site-button-link"><span class="fw6">READ MORE</span></a>
-									</div>
-								</div>
+							<div class="pagination-bx clearfix m-t30">
+								<ul class="pagination" id="blogPagination"></ul>
 							</div>
-							<div class="blog-post blog-lg blog-style-1">
-								<div class="dez-post-media dez-img-effect zoom-slow radius-sm"> <a
-										href="blog-details.html"><img src="images/blog/default/thum4.jpg" alt=""></a>
-								</div>
-								<div class="dez-info">
-									<div class="dez-post-meta">
-										<ul class="d-flex align-items-center">
-											<li class="post-date"><i class="fa fa-calendar"></i>September 18, 2021</li>
-											<li class="post-author"><i class="fa fa-user"></i>By <a href="#">demongo</a>
-											</li>
-											<li class="post-comment"><i class="far fa-comments"></i><a href="#">5k</a>
-											</li>
-										</ul>
-									</div>
-									<div class="dez-post-title ">
-										<h4 class="post-title font-24"><a href="blog-details.html">Do you have a job
-												that the average person doesnӴ even know exists?</a></h4>
-									</div>
-									<div class="dez-post-text">
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-											Lorem Ipsum has been the industry's standard dummy
-											text ever since the 1500s, when an unknown printer took a galley of type and
-											scrambled it to make a type specimen book.</p>
-									</div>
-									<div class="dez-post-readmore blog-share">
-										<a href="blog-details.html" title="READ MORE" rel="bookmark"
-											class="site-button-link"><span class="fw6">READ MORE</span></a>
-									</div>
-								</div>
-							</div>
-							<div class="blog-post blog-lg blog-style-1">
-								<div class="dez-post-media dez-img-effect zoom-slow radius-sm"> <a
-										href="blog-details.html"><img src="images/blog/default/thum3.jpg" alt=""></a>
-								</div>
-								<div class="dez-info">
-									<div class="dez-post-meta">
-										<ul class="d-flex align-items-center">
-											<li class="post-date"><i class="fa fa-calendar"></i>September 18, 2021</li>
-											<li class="post-author"><i class="fa fa-user"></i>By <a href="#">demongo</a>
-											</li>
-											<li class="post-comment"><i class="far fa-comments"></i><a href="#">5k</a>
-											</li>
-										</ul>
-									</div>
-									<div class="dez-post-title ">
-										<h4 class="post-title font-24"><a href="blog-details.html">Do you have a job
-												that the average person doesnӴ even know exists?</a></h4>
-									</div>
-									<div class="dez-post-text">
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-											Lorem Ipsum has been the industry's standard dummy
-											text ever since the 1500s, when an unknown printer took a galley of type and
-											scrambled it to make a type specimen book.</p>
-									</div>
-									<div class="dez-post-readmore blog-share">
-										<a href="blog-details.html" title="READ MORE" rel="bookmark"
-											class="site-button-link"><span class="fw6">READ MORE</span></a>
-									</div>
-								</div>
-							</div>
-							<div class="blog-post blog-lg blog-style-1">
-								<div class="dez-post-media dez-img-effect zoom-slow radius-sm"> <a
-										href="blog-details.html"><img src="images/blog/default/thum2.jpg" alt=""></a>
-								</div>
-								<div class="dez-info">
-									<div class="dez-post-meta">
-										<ul class="d-flex align-items-center">
-											<li class="post-date"><i class="fa fa-calendar"></i>September 18, 2021</li>
-											<li class="post-author"><i class="fa fa-user"></i>By <a href="#">demongo</a>
-											</li>
-											<li class="post-comment"><i class="far fa-comments"></i><a href="#">5k</a>
-											</li>
-										</ul>
-									</div>
-									<div class="dez-post-title ">
-										<h4 class="post-title font-24"><a href="blog-details.html">Do you have a job
-												that the average person doesnӴ even know exists?</a></h4>
-									</div>
-									<div class="dez-post-text">
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-											Lorem Ipsum has been the industry's standard dummy
-											text ever since the 1500s, when an unknown printer took a galley of type and
-											scrambled it to make a type specimen book.</p>
-									</div>
-									<div class="dez-post-readmore blog-share">
-										<a href="blog-details.html" title="READ MORE" rel="bookmark"
-											class="site-button-link"><span class="fw6">READ MORE</span></a>
-									</div>
-								</div>
-							</div>
-							<div class="blog-post blog-lg blog-style-1">
-								<div class="dez-post-media dez-img-effect zoom-slow radius-sm"> <a
-										href="blog-details.html"><img src="images/blog/default/thum1.jpg" alt=""></a>
-								</div>
-								<div class="dez-info">
-									<div class="dez-post-meta">
-										<ul class="d-flex align-items-center">
-											<li class="post-date"><i class="fa fa-calendar"></i>September 18, 2021</li>
-											<li class="post-author"><i class="fa fa-user"></i>By <a href="#">demongo</a>
-											</li>
-											<li class="post-comment"><i class="far fa-comments"></i><a href="#">5k</a>
-											</li>
-										</ul>
-									</div>
-									<div class="dez-post-title ">
-										<h4 class="post-title font-24"><a href="blog-details.html">Do you have a job
-												that the average person doesnӴ even know exists?</a></h4>
-									</div>
-									<div class="dez-post-text">
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-											Lorem Ipsum has been the industry's standard dummy
-											text ever since the 1500s, when an unknown printer took a galley of type and
-											scrambled it to make a type specimen book.</p>
-									</div>
-									<div class="dez-post-readmore blog-share">
-										<a href="blog-details.html" title="READ MORE" rel="bookmark"
-											class="site-button-link"><span class="fw6">READ MORE</span></a>
-									</div>
-								</div>
-							</div>
-							<!-- Blog large img END -->
-							<div class="pagination-bx clearfix text-center">
-								<ul class="pagination">
-									<li class="previous"><a href="javascript:void(0);"><i class="ti-arrow-left"></i>
-											Prev</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="javascript:void(0);">2</a></li>
-									<li><a href="javascript:void(0);">3</a></li>
-									<li class="next"><a href="javascript:void(0);">Next <i
-												class="ti-arrow-right"></i></a></li>
-								</ul>
-							</div>
-							<!-- Pagination END -->
 						</div>
-						<!-- Left part END -->
-						<!-- Side bar start -->
-						<div class="col-lg-4 col-md-5 col-sm-12 sticky-top">
+
+						<!-- Sidebar -->
+						<div class="col-lg-4 col-md-5 sticky-top">
 							<aside class="side-bar">
 								<div class="widget">
-									<h6 class="widget-title style-1">Search</h6>
-									<div class="search-bx style-1">
-										<form role="search" method="post">
-											<div class="input-group">
-												<input name="text" class="form-control"
-													placeholder="Enter your keywords..." type="text">
-												<span class="input-group-btn">
-													<button type="submit" class="fa fa-search text-primary"></button>
-												</span>
-											</div>
-										</form>
-									</div>
+									<h6 class="widget-title">Search</h6>
+									<form id="blogSearchForm" class="search-bx">
+										<div class="input-group">
+											<input name="search" id="blogSearchInput" type="text" class="form-control"
+												placeholder="Search articles...">
+											<span class="input-group-btn">
+												<button type="submit" class="site-button"><i
+														class="fa fa-search"></i></button>
+											</span>
+										</div>
+									</form>
 								</div>
+
 								<div class="widget recent-posts-entry">
-									<h6 class="widget-title style-1">Recent Posts</h6>
-									<div class="widget-post-bx">
-										<div class="widget-post clearfix">
-											<div class="dez-post-media"> <img src="images/blog/recent-blog/pic1.jpg"
-													width="200" height="143" alt=""> </div>
-											<div class="dez-post-info">
-												<div class="dez-post-header">
-													<h6 class="post-title"><a href="blog-details.html">11 Tips to Help
-															You Get New Clients Through Cold Calling</a></h6>
-												</div>
-												<div class="dez-post-meta">
-													<ul class="d-flex align-items-center">
-														<li class="post-date"><i class="fa fa-calendar"></i>Sep 18, 2021
-														</li>
-														<li class="post-comment"><a href="#"><i
-																	class="far fa-comments"></i>5k</a> </li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="widget-post clearfix">
-											<div class="dez-post-media"> <img src="images/blog/recent-blog/pic2.jpg"
-													width="200" height="160" alt=""> </div>
-											<div class="dez-post-info">
-												<div class="dez-post-header">
-													<h6 class="post-title"><a href="blog-details.html">Do you have a job
-															that the average person doesn’t even know exists?</a></h6>
-												</div>
-												<div class="dez-post-meta">
-													<ul class="d-flex align-items-center">
-														<li class="post-date"><i class="fa fa-calendar"></i>Sep 18, 2021
-														</li>
-														<li class="post-comment"><a href="#"><i
-																	class="far fa-comments"></i>5k</a> </li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="widget-post clearfix">
-											<div class="dez-post-media"> <img src="images/blog/recent-blog/pic3.jpg"
-													width="200" height="160" alt=""> </div>
-											<div class="dez-post-info">
-												<div class="dez-post-header">
-													<h6 class="post-title"><a href="blog-details.html">Using Banner
-															Stands To Increase Trade Show Traffic</a></h6>
-												</div>
-												<div class="dez-post-meta">
-													<ul class="d-flex align-items-center">
-														<li class="post-date"><i class="fa fa-calendar"></i>Sep 18, 2021
-														</li>
-														<li class="post-comment"><a href="#"><i
-																	class="far fa-comments"></i>5k</a> </li>
-													</ul>
-												</div>
-											</div>
-										</div>
+									<h6 class="widget-title">Recent Posts</h6>
+									<div class="widget-post-bx" id="blogRecentPosts">
+										<p class="text-muted font-13">Loading...</p>
 									</div>
 								</div>
 
-								<div class="widget widget_gallery gallery-grid-3">
-									<h6 class="widget-title style-1">Our Gallery</h6>
-									<ul class="lightgallery">
-										<li>
-											<span data-exthumbimage="images/gallery/small/pic1.jpg"
-												data-src="images/gallery/middle/pic1.jpg"
-												class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-												title="Maintenance">
-												<img src="images/gallery/small/pic1.jpg" alt="">
-											</span>
-										</li>
-										<li>
-											<span data-exthumbimage="images/gallery/small/pic2.jpg"
-												data-src="images/gallery/middle/pic2.jpg"
-												class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-												title="Maintenance">
-												<img src="images/gallery/small/pic2.jpg" alt="">
-											</span>
-										</li>
-										<li>
-											<span data-exthumbimage="images/gallery/small/pic3.jpg"
-												data-src="images/gallery/middle/pic3.jpg"
-												class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-												title="Maintenance">
-												<img src="images/gallery/small/pic3.jpg" alt="">
-											</span>
-										</li>
-										<li>
-											<span data-exthumbimage="images/gallery/small/pic4.jpg"
-												data-src="images/gallery/middle/pic4.jpg"
-												class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-												title="Maintenance">
-												<img src="images/gallery/small/pic4.jpg" alt="">
-											</span>
-										</li>
-										<li>
-											<span data-exthumbimage="images/gallery/small/pic5.jpg"
-												data-src="images/gallery/middle/pic5.jpg"
-												class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-												title="Maintenance">
-												<img src="images/gallery/small/pic5.jpg" alt="">
-											</span>
-										</li>
-										<li>
-											<span data-exthumbimage="images/gallery/small/pic6.jpg"
-												data-src="images/gallery/middle/pic6.jpg"
-												class="lightimg dez-img-overlay1 dez-img-effect zoom-slow"
-												title="Maintenance">
-												<img src="images/gallery/small/pic6.jpg" alt="">
-											</span>
-										</li>
-									</ul>
-								</div>
 								<div class="widget widget_archive">
-									<h6 class="widget-title style-1">Categories List</h6>
-									<ul>
-										<li><a href="javascript:void(0);">aciform</a></li>
-										<li><a href="javascript:void(0);">championship</a></li>
-										<li><a href="javascript:void(0);">chastening</a></li>
-										<li><a href="javascript:void(0);">clerkship</a></li>
-										<li><a href="javascript:void(0);">disinclination</a></li>
+									<h6 class="widget-title">Categories</h6>
+									<ul id="blogCategoriesList">
+										<li class="text-muted font-13">Loading...</li>
 									</ul>
 								</div>
 
-								<div class="widget widget-newslatter">
-									<h6 class="widget-title style-1">Newsletter</h6>
-									<div class="news-box">
-										<p>Enter your e-mail and subscribe to our newsletter.</p>
-										<form class="dzSubscribe" action="script/mailchamp.php" method="post">
-											<div class="dzSubscribeMsg"></div>
-											<div class="input-group">
-												<input name="dzEmail" required="required" type="email"
-													class="form-control" placeholder="Your Email" />
-												<button name="submit" value="Submit" type="submit"
-													class="site-button btn-block">Subscribe Now</button>
-											</div>
-										</form>
+								<div class="widget widget_tag_cloud">
+									<h6 class="widget-title">Tags</h6>
+									<div class="tagcloud" id="blogTagsList">
+										<span class="text-muted font-13">Loading...</span>
 									</div>
 								</div>
 							</aside>
 						</div>
-						<!-- Side bar END -->
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Content END-->
-		<!-- Modal Box -->
-		<div class="modal fade lead-form-modal" id="car-details" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<div class="modal-body row m-a0 clearfix">
-						<div class="col-lg-6 col-md-6 d-flex p-a0"
-							style="background-image: url(images/background/bg3.jpg);  background-position:center; background-size:cover;">
 
-						</div>
-						<div class="col-lg-6 col-md-6 p-a0">
-							<div class="lead-form browse-job text-left">
-								<form>
-									<h3 class="m-t0">Personal Details</h3>
-									<div class="form-group">
-										<input value="" class="form-control" placeholder="Name" />
-									</div>
-									<div class="form-group">
-										<input value="" class="form-control" placeholder="Mobile Number" />
-									</div>
-									<div class="clearfix">
-										<button type="button" class="btn-primary site-button btn-block">Submit </button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Modal Box End -->
-		<!-- Footer -->
 		<div id="footer-placeholder"></div>
-		<!-- Footer END -->
 		<button class="scroltop fa fa-chevron-up"></button>
 	</div>
-	<!-- JAVASCRIPT FILES ========================================= -->
-	<script src="js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
-	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP.MIN JS -->
-	<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script><!-- FORM JS -->
-	<script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script><!-- FORM JS -->
-	<script src="plugins/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
-	<script src="plugins/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-	<script src="plugins/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-	<script src="plugins/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
-	<script src="plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
-	<script src="plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
-	<script src="plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
-	<script src="plugins/scroll/scrollbar.min.js"></script><!-- OWL SLIDER -->
-	<script src="plugins/lightgallery/js/lightgallery-all.min.js"></script><!-- LIGHTGALLERY -->
-	<script src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-	<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
-	<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
+
+	<script src="js/jquery.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="plugins/magnific-popup/magnific-popup.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/dz.carousel.js"></script>
+	<script src="js/dz.ajax.js"></script>
+
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/blog-classic.js"></script>
 
 	<script src="js/headerAndFooter.js"></script>
-
 </body>
 
 </html>
