@@ -55,6 +55,10 @@
                                                         aria-hidden="true"></i> <span>Transactions</span></a></li>
                                             <li><a href="admin-categories.html"><i class="fa fa-tags"
                                                         aria-hidden="true"></i> <span>Categories</span></a></li>
+                                            <li><a href="admin-partners.html"><i class="fa fa-handshake"
+                                                        aria-hidden="true"></i> <span>Partners</span></a></li>
+                                            <li><a href="admin-testimonials.html"><i class="fa fa-quote-right"
+                                                        aria-hidden="true"></i> <span>Testimonials</span></a></li>
                                             <li><a href="admin-messages.html"><i class="fa fa-envelope"
                                                         aria-hidden="true"></i> <span>Messages</span></a></li>
                                             <li><a href="admin-settings.html"><i class="fa fa-cog"
@@ -79,11 +83,12 @@
                                                 <th>Location</th>
                                                 <th>Jobs</th>
                                                 <th>Verified</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody id="adminCompaniesBody">
                                             <tr>
-                                                <td colspan="6" class="text-center p-a30"><i
+                                                <td colspan="7" class="text-center p-a30"><i
                                                         class="fa fa-spinner fa-spin fa-2x text-primary"></i></td>
                                             </tr>
                                         </tbody>
@@ -101,6 +106,31 @@
 
         <div id="footer-placeholder"></div>
         <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+    <!-- Company Profile View Modal -->
+    <div class="modal fade" id="companyViewModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Company Profile Review</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="companyViewBody">
+                    <div class="text-center p-a20"><i class="fa fa-spinner fa-spin fa-2x text-primary"></i></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="site-button" id="modalVerifyBtn"
+                        style="background:#1c8a55;border-color:#1c8a55;"><i class="fa fa-check"></i> Verify</button>
+                    <button type="button" class="site-button" id="modalUnverifyBtn"
+                        style="background:#e67e22;border-color:#e67e22;"><i class="fa fa-times"></i> Unverify</button>
+                    <button type="button" class="site-button" style="background:#6b7280;"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/jquery.min.js"></script>

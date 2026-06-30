@@ -41,7 +41,9 @@ $(document).ready(function ()
             {
                 conversations = (res && res.data) || [];
                 renderList();
-                var toOpen = selectId || openId || (conversations[0] && conversations[0].id);
+                // Yalnız URL-də ?conversation= varsa avtomatik aç (email/notification-dan gəliş).
+                // Əks halda WhatsApp kimi əvvəl siyahı görünsün, istifadəçi seçsin.
+                var toOpen = selectId || openId;
                 if (toOpen) openConversation(toOpen);
             })
             .catch(function (err)
@@ -94,6 +96,7 @@ $(document).ready(function ()
 
                 $('#chatPlaceholder').hide();
                 $('#chatPanel').css('display', 'flex');
+                $('.chat-wrap').addClass('show-main'); // mobil: chat ekranını göstər
 
                 $('#chatHeadName').text(current.otherPartyName);
                 $('#chatHeadJob').text(current.jobTitle);
@@ -212,6 +215,12 @@ $(document).ready(function ()
                 applyStatus('closed');
             })
             .catch(function () { alert('Söhbət bağlana bilmədi.'); });
+    });
+
+    // ─── Mobil: söhbətdən siyahıya qayıt ─────────────────────
+    $('#chatBackBtn').on('click', function ()
+    {
+        $('.chat-wrap').removeClass('show-main');
     });
 
     // ─── SignalR real-time ───────────────────────────────────

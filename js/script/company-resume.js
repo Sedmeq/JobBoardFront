@@ -5,7 +5,7 @@
  * Backend:
  *   GET /api/jobs/my?page=1&pageSize=100        (vakansiya filtri üçün)
  *   GET /api/applications/applicants            (bütün müraciət edənlər)
- *   GET /api/jobs/{jobId}/applications          (konkret vakansiyanın müraciətləri)
+ *   GET /api/jobs/{jobId}/applicants            (konkret vakansiyanın müraciətləri)
  * CV: cv-view.html?id=<userId>
  */
 $(document).ready(function ()
@@ -54,6 +54,10 @@ $(document).ready(function ()
         var resumeFileBtn = c.resumeUrl
             ? '<a href="' + esc(c.resumeUrl) + '" target="_blank" download class="site-button button-sm" style="background:#3a4150;"><i class="fa fa-download"></i> Resume File</a>'
             : '';
+        // Konkret vakansiya görünüşündə müraciətə cavab (söhbət) düyməsi
+        var respondBtn = c.applicationId
+            ? '<a href="javascript:void(0);" class="site-button button-sm" data-chat-app="' + c.applicationId + '" style="background:#1c8a55;border-color:#1c8a55;"><i class="fa fa-comments"></i> Respond</a>'
+            : '';
         container.append(
             '<li class="col-lg-6 col-md-6">' +
             '<div class="post-bx">' +
@@ -77,12 +81,32 @@ $(document).ready(function ()
             '<i class="far fa-id-card"></i> View CV</a>' +
             '<a href="cv-view.html?id=' + c.id + '" target="_blank" class="site-button button-sm" style="background:#2e55fa;">' +
             '<i class="fa fa-download"></i> Download PDF</a>' +
-            resumeFileBtn +
+            resumeFileBtn + respondBtn +
             '</div>' +
             '</div>' +
             '</li>'
         );
     }
+
+    // Müraciətə cavab ver (söhbət aç) — event delegation
+    container.on('click', '[data-chat-app]', function ()
+    {
+        var appId = $(this).attr('data-chat-app');
+        var btn = $(this);
+        btn.css('pointer-events', 'none').html('<i class="fa fa-spinner fa-spin"></i>');
+        apiFetch('/chats', { method: 'POST', body: JSON.stringify({ applicationId: parseInt(appId) }) })
+            .then(function (res)
+            {
+                var id = res && res.data && res.data.id;
+                window.location.href = 'chat.html?conversation=' + id;
+            })
+            .catch(function (err)
+            {
+                btn.css('pointer-events', 'auto').html('<i class="fa fa-comments"></i> Respond');
+                var msg = (err && err.data && err.data.error && err.data.error.message) || 'Söhbət açıla bilmədi.';
+                alert(msg);
+            });
+    });
 
     function showEmpty(jobId)
     {
@@ -129,7 +153,7 @@ $(document).ready(function ()
     {
         currentPage = page || 1;
         loading();
-        apiFetch('/jobs/' + encodeURIComponent(jobId) + '/applications?page=' + currentPage + '&pageSize=' + pageSize)
+        apiFetch('/jobs/' + encodeURIComponent(jobId) + '/applicants?page=' + currentPage + '&pageSize=' + pageSize)
             .then(function (result)
             {
                 container.empty();
@@ -143,6 +167,7 @@ $(document).ready(function ()
                         id: c.id, fullName: c.fullName, avatarUrl: c.avatarUrl,
                         headline: c.headline, location: c.location, experienceYears: c.experienceYears,
                         resumeUrl: c.resumeUrl, skills: null,
+                        applicationId: app.id,
                         extraLine: 'Status: <strong style="text-transform:capitalize;">' + esc(app.status) + '</strong> · Applied ' + timeAgo(app.appliedAt)
                     });
                 });
@@ -194,6 +219,21 @@ $(document).ready(function ()
         });
     }
 
+    // Vakansiya filtri üçün bootstrap-select widget-ini yenilə.
+    // custom.js handleBootstrapSelect window "load" anında select-i widget-ə çevirir;
+    // dublikat yaranmaması üçün yeniləməni ondan sonra işə salırıq.
+    function refreshJobFilterPicker()
+    {
+        if (!$.fn.selectpicker) return;
+        var doRefresh = function ()
+        {
+            if (jobFilter.data('selectpicker')) jobFilter.selectpicker('destroy');
+            jobFilter.selectpicker();
+        };
+        if (document.readyState === 'complete') doRefresh();
+        else $(window).on('load', doRefresh);
+    }
+
     // Vakansiya filtrini doldur
     function loadVacancies()
     {
@@ -206,6 +246,9 @@ $(document).ready(function ()
                     var count = j.applicationCount != null ? j.applicationCount : 0;
                     jobFilter.append('<option value="' + j.id + '">' + esc(j.title) + ' (' + count + ')</option>');
                 });
+                // bootstrap-select (custom.js) bu select-i widget-ə çevirir; asinxron
+                // əlavə olunan option-ların görünməsi üçün widget-i yeniləyirik.
+                refreshJobFilterPicker();
             })
             .catch(function (err) { console.error('Vacancies load error:', err); });
     }

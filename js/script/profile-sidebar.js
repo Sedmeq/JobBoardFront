@@ -57,6 +57,7 @@ $(document).ready(function ()
                 ['company-transactions.html', 'fa fa-random', 'Transactions'],
                 ['company-manage-job.html', 'fa fa-briefcase', 'Manage jobs'],
                 ['company-resume.html', 'far fa-id-card', 'Resume'],
+                ['chat.html', 'far fa-comments', 'Messages'],
                 ['jobs-change-password.html', 'fa fa-key', 'Change Password'],
                 ['index.html', 'fas fa-sign-out-alt', 'Log Out']
             ]

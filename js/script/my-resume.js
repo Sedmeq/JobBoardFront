@@ -175,6 +175,7 @@ $(document).ready(function ()
 
                 $('#rHeadline').val(p.headline || '');
                 $('#rSummary').val(p.summary || '');
+                $('#rLocation').val(p.location || '');
                 skills = (p.skills || []).slice();
                 renderSkills();
 
@@ -208,7 +209,7 @@ $(document).ready(function ()
         var payload = {
             headline: $('#rHeadline').val().trim(),
             summary: $('#rSummary').val().trim(),
-            location: currentProfile.location || '',
+            location: $('#rLocation').val().trim(),
             website: currentProfile.website || '',
             linkedInUrl: currentProfile.linkedInUrl || '',
             githubUrl: currentProfile.githubUrl || '',
@@ -239,8 +240,16 @@ $(document).ready(function ()
     });
 
     // ─── Employment modal ────────────────────────────────────
-    var empModal = new bootstrap.Modal(document.getElementById('employmentModal'));
-    var eduModal = new bootstrap.Modal(document.getElementById('educationModal'));
+    // Modal-ları birbaşa <body>-nin altına köçürürük. Əks halda onlar .page-wraper
+    // içində qaldıqda Bootstrap backdrop-u modal məzmununun üstünə düşür və
+    // input-lara fokus/yazı mümkün olmur.
+    var empModalEl = document.getElementById('employmentModal');
+    var eduModalEl = document.getElementById('educationModal');
+    if (empModalEl && empModalEl.parentNode !== document.body) document.body.appendChild(empModalEl);
+    if (eduModalEl && eduModalEl.parentNode !== document.body) document.body.appendChild(eduModalEl);
+
+    var empModal = new bootstrap.Modal(empModalEl);
+    var eduModal = new bootstrap.Modal(eduModalEl);
 
     function openEmpModal(w)
     {

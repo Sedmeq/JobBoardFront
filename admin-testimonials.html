@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Job Board - Admin Categories</title>
+    <title>Job Board - Admin Testimonials</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,12 +53,13 @@
                                                         aria-hidden="true"></i> <span>Manage Companies</span></a></li>
                                             <li><a href="admin-transactions.html"><i class="fa fa-random"
                                                         aria-hidden="true"></i> <span>Transactions</span></a></li>
-                                            <li><a href="admin-categories.html" class="active"><i class="fa fa-tags"
+                                            <li><a href="admin-categories.html"><i class="fa fa-tags"
                                                         aria-hidden="true"></i> <span>Categories</span></a></li>
                                             <li><a href="admin-partners.html"><i class="fa fa-handshake"
                                                         aria-hidden="true"></i> <span>Partners</span></a></li>
-                                            <li><a href="admin-testimonials.html"><i class="fa fa-quote-right"
-                                                        aria-hidden="true"></i> <span>Testimonials</span></a></li>
+                                            <li><a href="admin-testimonials.html" class="active"><i
+                                                        class="fa fa-quote-right" aria-hidden="true"></i>
+                                                    <span>Testimonials</span></a></li>
                                             <li><a href="admin-messages.html"><i class="fa fa-envelope"
                                                         aria-hidden="true"></i> <span>Messages</span></a></li>
                                             <li><a href="admin-settings.html"><i class="fa fa-cog"
@@ -72,79 +73,91 @@
                             <div class="col-xl-9 col-lg-8 m-b30">
                                 <div class="job-bx submit-resume m-b30">
                                     <div class="job-bx-title clearfix">
-                                        <h5 id="catFormTitle" class="font-weight-700 float-start text-uppercase">Create
-                                            Category</h5>
+                                        <h5 id="tFormTitle" class="font-weight-700 float-start text-uppercase">
+                                            Add Testimonial</h5>
                                     </div>
 
-                                    <div id="catAlert" class="alert" role="alert" style="display:none;"></div>
+                                    <div id="tAlert" class="alert" role="alert" style="display:none;"></div>
 
-                                    <form id="categoryForm">
-                                        <input type="hidden" id="catId" value="">
+                                    <form id="testimonialForm">
+                                        <input type="hidden" id="tId" value="">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label>Category Name *</label>
-                                                    <input type="text" id="catName" class="form-control"
-                                                        placeholder="e.g. Data Science" required>
+                                                    <label>Name *</label>
+                                                    <input type="text" id="tName" class="form-control"
+                                                        placeholder="e.g. Max Makina" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label>Icon (emoji or class)</label>
-                                                    <input type="text" id="catIcon" class="form-control"
-                                                        placeholder="e.g. 📊">
+                                                    <label>Subtitle</label>
+                                                    <input type="text" id="tSubtitle" class="form-control"
+                                                        placeholder="e.g. One Year With Us">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-6">
+                                            <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label>Color (hex)</label>
-                                                    <input type="text" id="catColor" class="form-control"
-                                                        placeholder="e.g. #6366f1">
+                                                    <label>Message *</label>
+                                                    <textarea id="tMessage" class="form-control" rows="3"
+                                                        placeholder="What the client says..."></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="form-group">
                                                     <label>Sort Order</label>
-                                                    <input type="number" id="catSortOrder" class="form-control"
+                                                    <input type="number" id="tSortOrder" class="form-control"
                                                         placeholder="0" min="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Status</label>
+                                                    <select id="tActive" class="form-control">
+                                                        <option value="true">Active</option>
+                                                        <option value="false">Inactive</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea id="catDescription" class="form-control" rows="3"
-                                                        placeholder="Short description..."></textarea>
+                                                    <label>Photo</label>
+                                                    <input type="file" id="tAvatar" class="form-control"
+                                                        accept="image/*">
+                                                    <small class="text-muted">PNG, JPG, WEBP — max 5MB.
+                                                        Düzəlişdə boş buraxsanız köhnə şəkil qalır.</small>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" id="catSubmitBtn" class="site-button">Create
-                                            Category<span id="catSpinner" style="display:none;"><i
+                                        <button type="submit" id="tSubmitBtn" class="site-button">Add
+                                            Testimonial<span id="tSpinner" style="display:none;"><i
                                                     class="fa fa-spinner fa-spin"></i></span></button>
-                                        <button type="button" id="catCancelBtn" class="site-button outline"
+                                        <button type="button" id="tCancelBtn" class="site-button outline"
                                             style="display:none;">Cancel</button>
                                     </form>
                                 </div>
 
                                 <div class="job-bx submit-resume">
                                     <div class="job-bx-title clearfix">
-                                        <h5 class="font-weight-700 float-start text-uppercase">All Categories</h5>
-                                        <a href="javascript:void(0);" id="catReloadBtn"
+                                        <h5 class="font-weight-700 float-start text-uppercase">All Testimonials</h5>
+                                        <a href="javascript:void(0);" id="tReloadBtn"
                                             class="site-button right-arrow button-sm float-end">Refresh</a>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Icon</th>
+                                                    <th>Photo</th>
                                                     <th>Name</th>
-                                                    <th>Slug</th>
-                                                    <th>Jobs</th>
+                                                    <th>Message</th>
+                                                    <th>Order</th>
+                                                    <th>Status</th>
                                                     <th class="text-end">Actions</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="catTableBody">
+                                            <tbody id="tTableBody">
                                                 <tr>
-                                                    <td colspan="5" class="text-center p-a20"><i
+                                                    <td colspan="6" class="text-center p-a20"><i
                                                             class="fa fa-spinner fa-spin fa-2x text-primary"></i></td>
                                                 </tr>
                                             </tbody>
@@ -165,22 +178,14 @@
     <script src="js/jquery.min.js"></script>
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
-    <script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
     <script src="plugins/magnific-popup/magnific-popup.js"></script>
-    <script src="plugins/counter/waypoints-min.js"></script>
-    <script src="plugins/counter/counterup.min.js"></script>
-    <script src="plugins/imagesloaded/imagesloaded.js"></script>
-    <script src="plugins/masonry/masonry-3.1.4.js"></script>
-    <script src="plugins/masonry/masonry.filter.js"></script>
-    <script src="plugins/owl-carousel/owl.carousel.js"></script>
-    <script src="plugins/scroll/scrollbar.min.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/dz.carousel.js"></script>
     <script src="js/dz.ajax.js"></script>
 
     <script src="js/script/api-client.js"></script>
     <script src="js/script/admin-common.js"></script>
-    <script src="js/script/admin-categories.js"></script>
+    <script src="js/script/admin-testimonials.js"></script>
     <script src="js/headerAndFooter.js"></script>
 </body>
 

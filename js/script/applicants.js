@@ -72,7 +72,7 @@ $(document).ready(function ()
         var q = ['page=' + currentPage, 'pageSize=' + pageSize];
         if (status) q.push('status=' + encodeURIComponent(status));
 
-        apiFetch('/jobs/' + encodeURIComponent(jobId) + '/applications?' + q.join('&'))
+        apiFetch('/jobs/' + encodeURIComponent(jobId) + '/applicants?' + q.join('&'))
             .then(function (result)
             {
                 list.empty();

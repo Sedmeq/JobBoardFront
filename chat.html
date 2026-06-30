@@ -245,14 +245,36 @@
             border-top: 1px solid #f3dede;
         }
 
+        .chat-back-btn {
+            display: none;
+            background: transparent;
+            border: 0;
+            color: #2e55fa;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
         @media (max-width: 768px) {
-            .chat-list {
-                width: 120px;
+            .chat-back-btn {
+                display: inline-flex;
+                align-items: center;
             }
 
-            .chat-list-item .ci-job,
-            .chat-list-item .ci-last {
+            .chat-list {
+                width: 100%;
+            }
+
+            .chat-main {
                 display: none;
+            }
+
+            .chat-wrap.show-main .chat-list {
+                display: none;
+            }
+
+            .chat-wrap.show-main .chat-main {
+                display: flex;
             }
         }
     </style>
@@ -277,6 +299,8 @@
                             <div class="chat-main">
                                 <div id="chatPanel" style="display:none;flex:1;flex-direction:column;height:100%;">
                                     <div class="chat-head">
+                                        <button type="button" id="chatBackBtn" class="chat-back-btn" title="Back"><i
+                                                class="fa fa-arrow-left"></i></button>
                                         <img id="chatHeadAvatar" src="images/team/pic1.jpg" alt="">
                                         <div>
                                             <h6 id="chatHeadName">—</h6>

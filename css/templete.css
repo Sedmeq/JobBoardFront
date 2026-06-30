@@ -1664,6 +1664,13 @@
 	z-index: 99999;
 }
 
+/* Bootstrap 5 modal-ları default z-index (1055) ilə gəlir, lakin bu şablon
+   .modal-backdrop-i 99999-a qaldırır. Nəticədə adi modal-lar backdrop-un altında
+   qalır və input-lara yazmaq mümkün olmur. Generik modal-ı backdrop-dan yuxarı qaldırırıq. */
+.modal {
+	z-index: 100000;
+}
+
 .modal-bx-info .modal-header .close {
 	opacity: 1;
 	font-size: 36px;

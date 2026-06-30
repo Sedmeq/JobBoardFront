@@ -28,11 +28,16 @@ $(document).ready(function ()
         return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
-    function statusCell(status)
+    function statusCell(job)
     {
-        var map = { active: 'success', closed: 'text-red', draft: 'pending' };
-        var cls = map[status] || 'pending';
-        return '<td class="expired ' + cls + '" style="text-transform:capitalize;">' + escapeHtml(status || 'draft') + '</td>';
+        var isActive = job.status === 'active';
+        var label = isActive ? 'Active' : 'Inactive';
+        var color = isActive ? '#1c8a55' : '#9aa1ad';
+        return '<td><button type="button" class="site-button button-sm jb-status-btn" ' +
+            'data-status-job="' + job.id + '" data-active="' + (isActive ? '1' : '0') + '" ' +
+            'title="Click to toggle" ' +
+            'style="background-color:' + color + ';border-color:' + color + ';min-width:100px;">' +
+            label + '</button></td>';
     }
 
     function fetchJobs(page)
@@ -70,7 +75,7 @@ $(document).ready(function ()
                         '</td>' +
                         '<td class="application text-primary"><a href="company-applicants.html?jobId=' + job.id + '&title=' + encodeURIComponent(job.title) + '">(' + (job.applicationCount != null ? job.applicationCount : 0) + ') Applications</a></td>' +
                         '<td>' + formatDate(job.createdAt) + '</td>' +
-                        statusCell(job.status) +
+                        statusCell(job) +
                         '<td class="job-links">' +
                         '<a href="company-post-jobs.html?id=' + job.id + '" title="Edit"><i class="fa fa-pencil"></i></a> ' +
                         '<a href="javascript:void(0);" data-delete-job="' + job.id + '" title="Delete"><i class="ti-trash"></i></a>' +
@@ -90,6 +95,34 @@ $(document).ready(function ()
 
     function setupActions()
     {
+        $('.jb-status-btn').off('click').on('click', function ()
+        {
+            var btn = $(this);
+            var id = btn.attr('data-status-job');
+            var isActive = btn.attr('data-active') === '1';
+            var newStatus = isActive ? 'closed' : 'active';
+            btn.prop('disabled', true);
+            apiFetch('/jobs/' + id + '/status', {
+                method: 'PATCH',
+                body: JSON.stringify({ status: newStatus })
+            })
+                .then(function ()
+                {
+                    btn.prop('disabled', false);
+                    var nowActive = !isActive;
+                    var color = nowActive ? '#1c8a55' : '#9aa1ad';
+                    btn.attr('data-active', nowActive ? '1' : '0')
+                        .text(nowActive ? 'Active' : 'Inactive')
+                        .css({ 'background-color': color, 'border-color': color });
+                })
+                .catch(function (err)
+                {
+                    btn.prop('disabled', false);
+                    console.error('Status update error:', err);
+                    alert('Status dəyişdirilə bilmədi. Yenidən cəhd edin.');
+                });
+        });
+
         $('[data-delete-job]').off('click').on('click', function ()
         {
             var id = $(this).attr('data-delete-job');

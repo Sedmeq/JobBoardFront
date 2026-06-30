@@ -26,6 +26,107 @@ $(document).ready(function ()
         if (type !== 'success') setTimeout(function () { alertEl.slideUp(200); }, 6000);
     }
 
+    // Kateqoriyaları API-dən yüklə və dropdown-u doldur
+    function loadCategories(selectedId)
+    {
+        var select = $('#jobCategoryId');
+        return apiFetch('/categories?includeJobCount=false').then(function (result)
+        {
+            var categories = (result && result.data) || [];
+            select.empty();
+            // Yalnız seçim olmadıqda (yeni elan) placeholder göstər;
+            // redaktə rejimində artıq kateqoriya seçilidir.
+            if (!selectedId) select.append('<option value="">Select a category</option>');
+            categories.forEach(function (c)
+            {
+                var opt = $('<option>').val(c.id).text(c.name);
+                var icon = c.iconClass || c.icon || '';
+                if (icon)
+                {
+                    // FontAwesome class-dırsa <i>, əks halda emoji kimi göstər
+                    var iconHtml = icon.indexOf('fa') === 0
+                        ? '<i class="' + icon + '"></i>'
+                        : icon;
+                    opt.attr('data-content', iconHtml + ' <span>' + $('<div>').text(c.name).html() + '</span>');
+                }
+                select.append(opt);
+            });
+            if (selectedId) select.val(String(selectedId));
+            // bootstrap-select (custom.js handleBootstrapSelect) bu select-i widget-ə çevirir.
+            // Asinxron yükləmədən sonra köhnə widget-i təmizləyib yenidən qururuq ki,
+            // "Loading" mətni qalmasın və siyahı alt-alta düşməsin.
+            refreshPicker(select);
+        }).catch(function (err)
+        {
+            console.error('Categories load error:', err);
+            select.empty().append('<option value="">Failed to load categories</option>');
+            refreshPicker(select);
+        });
+    }
+
+    function refreshPicker(select)
+    {
+        if (!$.fn.selectpicker) return;
+        // custom.js içindəki handleBootstrapSelect window "load" anında bütün select-ləri
+        // selectpicker-ə çevirir. Dublikat (alt-alta düşən) widget yaranmaması üçün
+        // bizim yeniləməni HƏMİŞƏ ondan sonra işə salırıq və əvvəlcə köhnəni silirik.
+        var doRefresh = function ()
+        {
+            if (select.data('selectpicker')) select.selectpicker('destroy');
+            select.selectpicker();
+        };
+        if (document.readyState === 'complete')
+        {
+            doRefresh();
+        }
+        else
+        {
+            $(window).on('load', doRefresh);
+        }
+    }
+
+    function blockForm(msg)
+    {
+        alertEl.removeClass('alert-success alert-danger alert-info')
+            .addClass('alert alert-warning').html(msg).show();
+        $('#postJobBtn').prop('disabled', true);
+    }
+
+    // Yalnız profil tam və admin tərəfindən təsdiqlənmiş şirkət iş elanı yerləşdirə bilər
+    function checkCompanyGate()
+    {
+        var role = 'employer';
+        try { role = (JSON.parse(localStorage.getItem('user') || '{}').role || 'employer').toLowerCase(); } catch (e) { }
+        if (role !== 'employer') return; // admin üçün məhdudiyyət yoxdur
+
+        apiFetch('/companies/me')
+            .then(function (res)
+            {
+                var c = res && res.data;
+                if (!c) return;
+                var missing = [];
+                if (!c.description) missing.push('Description');
+                if (!c.industry) missing.push('Industry');
+                if (!c.location) missing.push('Location');
+                if (!c.phone) missing.push('Phone');
+                if (!c.email) missing.push('Email');
+
+                if (missing.length)
+                {
+                    blockForm('<i class="fa fa-exclamation-triangle"></i> İş elanı yerləşdirmək üçün əvvəlcə şirkət profilinizi tam doldurun. Çatışmayan: <strong>' +
+                        missing.join(', ') + '</strong>. <a href="company-profile.html" class="site-button button-sm m-l10">Profili tamamla</a>');
+                }
+                else if (!c.isVerified)
+                {
+                    blockForm('<i class="fa fa-clock"></i> Şirkətiniz hələ admin tərəfindən təsdiqlənməyib. Təsdiqdən sonra iş elanı yerləşdirə biləcəksiniz.');
+                }
+            })
+            .catch(function () { /* sakitcə keç */ });
+    }
+
+    if (!editId) loadCategories();
+    checkCompanyGate();
+
     // Redaktə rejimi: mövcud iş məlumatını yüklə
     if (editId)
     {
@@ -37,7 +138,7 @@ $(document).ready(function ()
             {
                 var j = result.data;
                 $('#jobTitle').val(j.title || '');
-                $('#jobCategoryId').val(j.category && j.category.id ? j.category.id : (j.categoryId || ''));
+                loadCategories(j.category && j.category.id ? j.category.id : (j.categoryId || ''));
                 $('#jobSkills').val((j.requiredSkills || []).map(function (s) { return s.skillName || s; }).join(', '));
                 $('#jobType').val(j.jobType || 'Full-time');
                 $('#jobExperienceLevel').val(j.experienceLevel || 'Junior');
@@ -68,7 +169,7 @@ $(document).ready(function ()
 
         if (!title || !description || !categoryId)
         {
-            showAlert('Please fill in the required fields: Title, Category ID and Description.', 'danger');
+            showAlert('Please fill in the required fields: Title, Category and Description.', 'danger');
             return;
         }
 

@@ -266,6 +266,16 @@
                                                     id="registerSpinner"></span></button>
                                         </div>
 
+                                        <!-- OR divider -->
+                                        <div class="text-center m-t20 m-b10"
+                                            style="display:flex;align-items:center;gap:10px;color:#9aa1ad;font-size:13px;">
+                                            <span style="flex:1;height:1px;background:#e6e8f1;"></span> OR
+                                            <span style="flex:1;height:1px;background:#e6e8f1;"></span>
+                                        </div>
+
+                                        <!-- Google Sign-Up (yuxarıdakı "I am a" seçiminə görə qeydiyyat) -->
+                                        <div id="googleBtn" style="display:flex;justify-content:center;"></div>
+
                                         <div class="text-center m-t20">
                                             <p>Already have an account? <a href="login-3.html">Sign In</a></p>
                                         </div>
@@ -335,6 +345,9 @@
     <!-- ===== REGISTER API SCRIPT ===== -->
     <script src="js/script/api-client.js"></script>
     <script src="js/script/register.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="js/script/google-config.js"></script>
+    <script src="js/script/google-auth.js"></script>
 
     <script src="js/headerAndFooter.js"></script>
 </body>
