@@ -10,6 +10,25 @@
 	margin-right: 30px;
 }
 
+/* CV Analyzer əlavə olunduqdan sonra menyunun bir sətrə sığması üçün
+   logo sahəsini daraldırıq və nav elementlərinin aralığını azaldırıq */
+@media only screen and (min-width: 992px) {
+	.fullwidth .logo-header {
+		width: 110px !important;
+		margin-right: 10px !important;
+	}
+
+	.fullwidth .header-nav .nav>li {
+		margin: 0px 1px;
+	}
+
+	.fullwidth .header-nav .nav>li>a {
+		padding-left: 8px;
+		padding-right: 8px;
+		font-size: 14px;
+	}
+}
+
 .fullwidth .header-nav .nav>li {
 	padding: 20px 0;
 	margin: 0px 3px;

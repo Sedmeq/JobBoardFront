@@ -22,6 +22,10 @@
 		rel="stylesheet">
 
 	<style>
+		.site-button {
+			white-space: nowrap;
+		}
+
 		.resume-skill-tag {
 			display: inline-flex;
 			align-items: center;
@@ -209,13 +213,11 @@
 											<div class="form-group">
 												<label>Languages</label>
 												<div id="rLangList"></div>
-												<button type="button" id="rAddLangBtn"
-													class="site-button button-sm m-t5"><i class="fa fa-plus"></i>
-													Add Language</button>
+												<button type="button" id="rAddLangBtn" class="site-button button-sm 
+													m-t5"><i class="fa fa-plus"></i>Add Language</button>
 											</div>
-											<button type="submit" id="rSaveBtn" class="site-button">
-												Save Resume Details
-												<span id="rSaveSpinner" style="display:none;"><i
+											<button type="submit" id="rSaveBtn" class="site-button">Save Resume
+												Details<span id="rSaveSpinner" style="display:none;"><i
 														class="fa fa-spinner fa-spin"></i></span>
 											</button>
 										</form>

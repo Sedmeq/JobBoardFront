@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>AI CV Analyzer - JobBoard</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" type="text/css" href="css/plugins.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/templete.css">
+	<link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
+	<link rel="stylesheet" type="text/css" href="css/dark-layout.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+
+	<style>
+		.ai-hero {
+			background: linear-gradient(135deg, #2e55fa, #5b76ff);
+			color: #fff;
+			padding: 40px;
+			border-radius: 12px;
+			margin-bottom: 24px;
+		}
+
+		.ai-hero h2 {
+			color: #fff;
+			margin: 0 0 8px;
+		}
+
+		.ai-badge {
+			display: inline-block;
+			padding: 4px 12px;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: 700;
+		}
+
+		.ai-badge.free {
+			background: #e6f7ee;
+			color: #1c8a55;
+		}
+
+		.ai-badge.paid {
+			background: #fff4e0;
+			color: #b8860b;
+		}
+
+		.ai-badge.ok {
+			background: #e6f7ee;
+			color: #1c8a55;
+		}
+
+		.ai-result {
+			background: #f7f8fc;
+			border: 1px solid #e6e8f1;
+			border-radius: 10px;
+			padding: 22px;
+			white-space: pre-wrap;
+			line-height: 1.7;
+			font-size: 14px;
+			color: #2d3340;
+		}
+
+		.ai-paywall {
+			border: 2px dashed #d9dcea;
+			border-radius: 12px;
+			padding: 30px;
+			text-align: center;
+		}
+
+		body.layout-dark .ai-result {
+			background: #1f212c;
+			border-color: #33364a;
+			color: #e7e9f2;
+		}
+
+		body.layout-dark .form-control {
+			background: #1f212c;
+			color: #e7e9f2;
+			border-color: #33364a;
+		}
+	</style>
+</head>
+
+<body id="bg">
+	<div class="page-wraper">
+		<div id="loading-area"></div>
+		<div id="header-placeholder"></div>
+
+		<div class="page-content bg-white">
+			<div class="content-block">
+				<div class="section-full bg-white p-t50 p-b50">
+					<div class="container">
+						<div class="ai-hero">
+							<h2><i class="fa fa-robot"></i> AI CV Analyzer</h2>
+							<p class="m-b0">Süni intellekt CV-nizi analiz edir, çatışmayanları göstərir və nələr əlavə
+								etməli olduğunuza dair tövsiyələr verir.</p>
+							<div class="m-t15" id="aiStatusBadge"></div>
+						</div>
+
+						<div id="aiAlert" class="alert" role="alert" style="display:none;"></div>
+
+						<!-- Paywall (ödəniş tələb olunanda) -->
+						<div id="aiPaywall" class="ai-paywall m-b30" style="display:none;">
+							<i class="fa fa-lock fa-2x text-primary m-b15"></i>
+							<h4>This is a premium feature</h4>
+							<p class="text-muted" id="aiPaywallText">Unlock the AI CV Analyzer with a one-time payment.
+							</p>
+							<button type="button" id="aiBuyBtn" class="site-button"><i class="fa fa-credit-card"></i>
+								Unlock Now <span id="aiBuySpinner" style="display:none;"><i
+										class="fa fa-spinner fa-spin"></i></span></button>
+						</div>
+
+						<!-- Analyzer (giriş olduqda) -->
+						<div id="aiTool" style="display:none;">
+							<div class="alert alert-info" style="border-radius:10px;">
+								<i class="fa fa-info-circle"></i> CV-nizi <b>kompüterdən fayl kimi (PDF, DOCX, TXT)</b>
+								yükləyə bilərsiniz və ya aşağıdakı mətn sahəsinə əl ilə daxil edə bilərsiniz.
+							</div>
+
+							<!-- Fayl yükləmə -->
+							<div class="form-group">
+								<label class="font-weight-600">Upload CV file (PDF / DOCX / TXT)</label>
+								<div class="row align-items-center">
+									<div class="col-md-8 m-b10">
+										<input type="file" id="aiCvFile" class="form-control"
+											accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain">
+										<small class="text-muted" id="aiFileName"></small>
+									</div>
+									<div class="col-md-4 m-b10">
+										<button type="button" id="aiAnalyzeFileBtn" class="site-button w-100">
+											<i class="fa fa-file-upload"></i> Analyze File
+											<span id="aiFileSpinner" style="display:none;"><i
+													class="fa fa-spinner fa-spin"></i></span>
+										</button>
+									</div>
+								</div>
+							</div>
+
+							<div class="dez-divider bg-gray-dark"><span class="text-muted">və ya mətn kimi</span></div>
+
+							<div class="row">
+								<div class="col-lg-6 form-group">
+									<label class="font-weight-600">Your CV</label>
+									<textarea id="aiCvText" class="form-control" rows="14"
+										placeholder="CV mətni (profilinizdən avtomatik dolur, redaktə edə bilərsiniz)..."></textarea>
+								</div>
+								<div class="col-lg-6 form-group">
+									<label class="font-weight-600">About you / extra info (optional)</label>
+									<textarea id="aiExtra" class="form-control" rows="14"
+										placeholder="Özünüz haqqında əlavə məlumat: hədəf vəzifə, sahə, nailiyyətlər və s."></textarea>
+								</div>
+							</div>
+							<button type="button" id="aiAnalyzeBtn" class="site-button"><i class="fa fa-magic"></i>
+								Analyze My CV <span id="aiAnalyzeSpinner" style="display:none;"><i
+										class="fa fa-spinner fa-spin"></i></span></button>
+
+							<div id="aiResultWrap" class="m-t30" style="display:none;">
+								<div class="job-bx-title clearfix">
+									<h5 class="font-weight-700 text-uppercase">AI Analysis & Recommendations</h5>
+								</div>
+								<div class="ai-result" id="aiResult"></div>
+							</div>
+						</div>
+
+						<div id="aiLoading" class="text-center p-a30">
+							<i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer-placeholder"></div>
+		<button class="scroltop fa fa-chevron-up"></button>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/dz.carousel.js"></script>
+	<script src="js/dz.ajax.js"></script>
+
+	<script src="js/script/api-client.js"></script>
+	<script src="js/script/cv-analyzer.js"></script>
+
+	<script src="js/headerAndFooter.js"></script>
+</body>
+
+</html>
