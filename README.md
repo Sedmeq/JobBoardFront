@@ -12,7 +12,7 @@
 [![Stripe](https://img.shields.io/badge/Stripe-Payments-008CDD?style=for-the-badge&logo=stripe)](https://stripe.com/)
 [![Google OAuth](https://img.shields.io/badge/Google-OAuth_2.0-4285F4?style=for-the-badge&logo=google)](https://developers.google.com/identity)
 
-[![Backend Repo](https://img.shields.io/badge/Backend-JobBoard.Core-6366f1?style=for-the-badge&logo=github)](https://github.com/Sedmeq/JobBoard)
+[![Backend Repo](https://img.shields.io/badge/Backend-JobBoard-6366f1?style=for-the-badge&logo=github)](https://github.com/Sedmeq/JobBoard)
 
 </div>
 
@@ -401,6 +401,6 @@ new signalR.HubConnectionBuilder()
 
 Built with ❤️ using **Vanilla JS** · **jQuery** · **SignalR** · **Stripe** · **Google OAuth**
 
-🔗 **Backend API:** [github.com/Sedmeq/JobBoard.Core](https://github.com/Sedmeq/JobBoard)
+🔗 **Backend API:** [github.com/Sedmeq/JobBoard](https://github.com/Sedmeq/JobBoard)
 
 </div>
